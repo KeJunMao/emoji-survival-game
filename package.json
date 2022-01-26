@@ -4,6 +4,7 @@
   "description": "Phaser 3 starter template with TypeScript and webpack.",
   "homepage": "https://github.com/yandeu/phaser-project-template#readme",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "start": "webpack serve --config webpack/webpack.dev.js",
     "build": "rimraf dist && webpack --config webpack/webpack.prod.js",
@@ -22,12 +23,12 @@
     "starter"
   ],
   "author": {
-    "name": "Yannick Deubel",
-    "url": "https://github.com/yandeu"
+    "name": "KeJun",
+    "url": "https://github.com/KeJunMao"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yandeu/phaser-project-template.git"
+    "url": "https://github.com/KeJunMao/emoji-survival-game"
   },
   "template": {
     "name": "phaser-project-template",
