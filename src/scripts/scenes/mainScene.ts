@@ -2,6 +2,7 @@ import Scenes from '../enums/Scenes'
 import ContainmentRect from '../game/ContainmentRect'
 import Game from '../game/Game'
 import GameCore from '../game/GameCore'
+import VirtualJoystick from 'phaser3-rex-plugins/plugins/virtualjoystick.js'
 
 export default class MainScene extends Phaser.Scene {
   cursors: Phaser.Types.Input.Keyboard.CursorKeys
@@ -18,6 +19,7 @@ export default class MainScene extends Phaser.Scene {
   maxSpeed: number
   containmentRect_Enemies: ContainmentRect
   containmentRect_Bullets: ContainmentRect
+  joyStick: VirtualJoystick
   constructor() {
     super({ key: Scenes.MainScene })
     this._lastVelocity = new Phaser.Math.Vector2(1, 0)
@@ -27,6 +29,14 @@ export default class MainScene extends Phaser.Scene {
   }
 
   create() {
+    this.joyStick = new VirtualJoystick(this, {
+      x: 400,
+      y: 300,
+      radius: 75,
+      base: this.add.circle(0, 0, 75 * 0.5, 13421772, 0.5).setDepth(10001),
+      thumb: this.add.circle(0, 0, 35 * 0.5, 8947848, 0.5).setDepth(1e4),
+      forceMin: 8
+    })
     this.cursors = this.input.keyboard.createCursorKeys()
     this.wKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
     this.aKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
@@ -41,25 +51,40 @@ export default class MainScene extends Phaser.Scene {
     this.containmentRect_Enemies = new ContainmentRect(0.7)
     this.containmentRect_Bullets = new ContainmentRect(0.55)
     this.cameras.main.startFollow(Game.Core.Player)
-    // this.add.text(10, 10, '👻', { fontSize: '32px' })
   }
 
   update(time: number, delta: number): void {
     this.maxSpeed = GameCore.PlayerPxSpeed * Game.Core.Player.moveSpeed
-    Game.Core.Player.lastFaceDirection = this._lastVelocity
-    Game.Core.Player.Body.setVelocity(0)
-    Game.Core.Player.Body.velocity = new Phaser.Math.Vector2(0, 0)
-    let flag = false
-    this.cursorsVector.x = 0
-    this.cursorsVector.y = 0
-    flag = this.updateCursors(delta)
-    if (flag) {
-      Game.Core.Player.setVelocity(this.cursorsVector.x, this.cursorsVector.y)
+    if (this.pointer.isDown || this.input.pointer1.isDown) {
+      if (!this.joyStick.visible) {
+        this.joyStick.enable = true
+        this.joyStick.visible = true
+        this.joyStick.setPosition(this.pointer.x | this.input.pointer1.x, this.pointer.y | this.input.pointer1.y)
+      }
+      this.physics.velocityFromRotation(
+        this.joyStick.rotation,
+        this.joyStick.force > 8 ? this.maxSpeed : 0,
+        Game.Core.Player.Body.velocity
+      )
       this._lastVelocity.copy(Game.Core.Player.body.velocity)
     } else {
+      this.joyStick.visible = false
+      this.joyStick.enable = false
       Game.Core.Player.lastFaceDirection = this._lastVelocity
-      // Game.Core.Player.Body.velocity.set(0)
+      Game.Core.Player.Body.setVelocity(0)
+      Game.Core.Player.Body.velocity = new Phaser.Math.Vector2(0, 0)
+      let flag = false
+      this.cursorsVector.x = 0
+      this.cursorsVector.y = 0
+      flag = this.updateCursors(delta)
+      if (flag) {
+        Game.Core.Player.setVelocity(this.cursorsVector.x, this.cursorsVector.y)
+        this._lastVelocity.copy(Game.Core.Player.body.velocity)
+      } else {
+        Game.Core.Player.lastFaceDirection = this._lastVelocity
+      }
     }
+
     if (!Game.Core.IsTimeStopped) {
       for (let e = 0; e < 10; e++) this.containmentRect_Enemies.DespawnIfOutside(Game.Core.EnemyGroup.children.entries)
       for (let e = 0; e < 10; e++) this.containmentRect_Bullets.DespawnIfOutside(Game.Core.BulletGroup.children.entries)

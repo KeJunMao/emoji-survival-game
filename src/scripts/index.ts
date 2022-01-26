@@ -8,7 +8,12 @@ import PreloadScene from './scenes/preloadScene'
 
 const DEFAULT_WIDTH = 1280
 const DEFAULT_HEIGHT = 720
-
+const isVerticalScreen = window.innerWidth <= window.innerHeight
+const scale = isVerticalScreen
+  ? Math.min(DEFAULT_WIDTH / window.innerWidth, devicePixelRatio)
+  : Math.min(DEFAULT_HEIGHT / window.innerHeight, devicePixelRatio)
+const width = Math.floor(window.innerWidth * scale)
+const height = Math.floor(window.innerHeight * scale)
 const config = {
   type: Phaser.AUTO,
   backgroundColor: '#ffffff',
@@ -16,8 +21,8 @@ const config = {
     parent: 'phaser-game',
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT
+    width,
+    height
   },
   scene: [PreloadScene, MainScene, LevelUpScene],
   physics: {

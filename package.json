@@ -41,6 +41,7 @@
   "license": "MIT",
   "dependencies": {
     "phaser": "^3.55.2",
+    "phaser3-rex-plugins": "^1.1.66",
     "phaser3-weapon-plugin": "^2.2.0"
   },
   "devDependencies": {
