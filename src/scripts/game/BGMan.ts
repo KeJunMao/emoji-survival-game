@@ -12,7 +12,7 @@ export default class BGMan {
   constructor(scene: Phaser.Scene) {
     this.timeOffset = 0
     this.dayCycleDuration = 900
-    this.DayColor = 16777215
+    this.DayColor = 0xffffff
     this.NightColor = 279790
     this.RunTimeHue = true
     this.canScroll = true

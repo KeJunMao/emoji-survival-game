@@ -354,11 +354,11 @@ export default class GameCore {
   }
   ShowHitVFXAt(x: number, y: number, hitVFX: HitVFXType) {
     // throw new Error('Method not implemented.')
-    console.log('ShowHitVFXAt')
+    // console.log('ShowHitVFXAt')
   }
   ShowDamageAt(x: number, y: number, PPower: number) {
     // throw new Error('Method not implemented.')
-    console.log('ShowDamageAt')
+    // console.log('ShowDamageAt')
   }
   GameOver() {
     // throw new Error('Method not implemented.')

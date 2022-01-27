@@ -1,18 +1,22 @@
-import Weapons from '../../enums/WeaponType'
+import WEAPONS from '../../consts/WEAPONS'
+import WeaponType from '../../enums/WeaponType'
 import BaseWeapon from './BaseWeapon'
-import LegWeapon from './LegWeapon'
-import PowerUpWeapon from './PowerUpWepaon'
+import PowerUpWeapon from './PowerUpWeapon'
 
 export default class WeaponFactory {
-  GetWeapon(weapon: Weapons): BaseWeapon {
-    // todo power up
-    // if (!weapon) {
-    //   return new PowerUpWeapon(weapon)
-    // }
+  GetWeapon(weapon: WeaponType): BaseWeapon {
+    const weaponData = WEAPONS[weapon][0]
+    if (weaponData.isPowerUp) {
+      return new PowerUpWeapon(weapon)
+    }
     switch (weapon) {
       default:
-      case Weapons.LEG:
-        return new LegWeapon(weapon)
+      case WeaponType.LEG:
+        return new BaseWeapon(weapon)
+      case WeaponType.BONE:
+        return new BaseWeapon(weapon)
+      case WeaponType.FIST:
+        return new BaseWeapon(weapon)
     }
   }
 }

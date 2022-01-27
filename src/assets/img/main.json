@@ -4,7 +4,7 @@
 			"image": "main.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 432,
+				"w": 446,
 				"h": 128
 			},
 			"scale": 1,
@@ -85,31 +85,6 @@
 					}
 				},
 				{
-					"filename": "poo_enemy.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 64,
-						"h": 60
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 60
-					},
-					"frame": {
-						"x": 192,
-						"y": 64,
-						"w": 64,
-						"h": 60
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
 					"filename": "ghost_boss_enemy.png",
 					"rotated": false,
 					"trimmed": false,
@@ -124,7 +99,7 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 256,
+						"x": 192,
 						"y": 64,
 						"w": 59,
 						"h": 64
@@ -149,8 +124,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 273,
-						"y": 0,
+						"x": 251,
+						"y": 64,
 						"w": 59,
 						"h": 64
 					},
@@ -174,8 +149,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 315,
-						"y": 64,
+						"x": 273,
+						"y": 0,
 						"w": 53,
 						"h": 64
 					},
@@ -199,35 +174,10 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 332,
-						"y": 0,
+						"x": 310,
+						"y": 64,
 						"w": 52,
 						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "bat_enemy.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 64,
-						"h": 47
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 47
-					},
-					"frame": {
-						"x": 368,
-						"y": 64,
-						"w": 64,
-						"h": 47
 					},
 					"anchor": {
 						"x": 0.5,
@@ -249,10 +199,60 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 384,
+						"x": 326,
 						"y": 0,
 						"w": 26,
 						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "poo_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 60
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 60
+					},
+					"frame": {
+						"x": 352,
+						"y": 0,
+						"w": 64,
+						"h": 60
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "magnet_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 16,
+						"y": 6,
+						"w": 30,
+						"h": 51
+					},
+					"frame": {
+						"x": 416,
+						"y": 0,
+						"w": 30,
+						"h": 51
 					},
 					"anchor": {
 						"x": 0.5,
@@ -274,10 +274,35 @@
 						"h": 28
 					},
 					"frame": {
-						"x": 410,
-						"y": 0,
+						"x": 416,
+						"y": 51,
 						"w": 20,
 						"h": 28
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "bat_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 47
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 47
+					},
+					"frame": {
+						"x": 362,
+						"y": 79,
+						"w": 64,
+						"h": 47
 					},
 					"anchor": {
 						"x": 0.5,
@@ -290,6 +315,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:b7a5b05b8dc63d11608b41b5c987d75a:8f084fc9f7d0d97fae31878342617e66:03f91ab73e0f4667800419161e658c40$"
+		"smartupdate": "$TexturePacker:SmartUpdate:c697dac985a6b1ab49fcab356b5d3add:bc98f05a6175da25171912c24a171b25:03f91ab73e0f4667800419161e658c40$"
 	}
 }

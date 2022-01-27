@@ -182,6 +182,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   }
   OnGetDamaged(hitVFX: HitVFXType = HitVFXType.DEFAULT) {
     if (Game.Core.PlayerOptions.FlashingVFXEnabled && hitVFX !== HitVFXType.NONE) {
+      this.setTintFill()
       // TODO: 特效判断
     }
     this._blinkTimeout = Game.Core.scene.time.addEvent({
@@ -194,7 +195,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.receivingDamage = true
   }
   restoreTint() {
-    this.IsTimeStopped ? this.setTint(255) : this.setTint(16777215)
+    this.IsTimeStopped ? this.setTint(255) : this.setTint(0xffffff)
     this.receivingDamage = false
   }
 

@@ -85,6 +85,7 @@ export default class BaseWeapon {
     this.ResetFiringTimer()
     Game.Core.scene.physics.add.overlap(this.pool, Game.Core.Enemies, this.onBulletOverlapsEnemy.bind(this))
     Game.Core.scene.physics.add.overlap(this.pool, Game.Core.Destructibles, this.onBulletOverlapsDestuctible.bind(this))
+
     // if (this.hitsWalls && Game.Core.Stage.hasTileset) {
     //   Game.Core.scene.physics.add.collider(this.pool, Stage.WallLayer, this.onBulletOverlapsWall.bind(this))
     //   Game.Core.scene.physics.add.collider(this.pool, Stage.ObstacleLayer, this.onBulletOverlapsWall.bind(this))
@@ -97,7 +98,10 @@ export default class BaseWeapon {
       enemy.GetDamaged(this.PPower, this.hitVFX, this.knockback)
     }
   }
-  onBulletOverlapsWall() {}
+  onBulletOverlapsWall(e, t) {
+    e.OnHasHitWall(t)
+    return false
+  }
   onBulletOverlapsDestuctible() {}
   ResetFiringTimer() {
     if (this.firingTimer) {

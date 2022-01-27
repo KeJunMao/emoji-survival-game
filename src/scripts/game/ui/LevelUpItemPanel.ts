@@ -67,16 +67,26 @@ export default class LevelUpItemPanel extends Phaser.GameObjects.Container {
       switch (key) {
         default:
         case 'power':
-          temp += `${isPowerUp ? '[全部]' : ''}攻击力增加${nextLevelData[key] * 100}%\n`
+          temp += `${isPowerUp ? '[全部]' : ''}攻击力增加${(nextLevelData[key] * 100).toFixed(0)}%\n`
           break
         case 'area':
-          temp += `${isPowerUp ? '[全部]' : ''}攻击范围增加${nextLevelData[key] * 100}%\n`
+          temp += `${isPowerUp ? '[全部]' : ''}攻击范围增加${(nextLevelData[key] * 100).toFixed(0)}%\n`
           break
         case 'amount':
           temp += `${isPowerUp ? '[全部]' : ''}攻击次数增加${nextLevelData[key]}次\n`
           break
         case 'interval':
-          temp += `${isPowerUp ? '[全部]' : ''}攻击间隔减少${nextLevelData[key] * -0.001}秒\n`
+          temp += `${isPowerUp ? '[全部]' : ''}攻击间隔减少${(nextLevelData[key] * -0.001).toFixed(1)}秒\n`
+          break
+        case 'duration':
+          temp += `${isPowerUp ? '[全部]' : ''}持续时间增加${
+            isPowerUp ? (nextLevelData[key] * 100).toFixed(1) : (nextLevelData[key] * 0.001).toFixed(1)
+          }${isPowerUp ? '%' : ''}秒\n`
+          break
+        case 'speed':
+          temp += `${isPowerUp ? '[全部]' : ''}武器速度增加${(nextLevelData[key] * 100).toFixed(0)}秒\n`
+        case 'magnet':
+          temp += '拾取范围增加' + (100 * nextLevelData[key]).toFixed(0) + '%\n'
           break
       }
     }

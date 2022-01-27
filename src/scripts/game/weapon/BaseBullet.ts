@@ -1,11 +1,12 @@
 import WeaponType from '../../enums/WeaponType'
 import Weapons from '../../enums/WeaponType'
 import Enemy from '../enemy/Enemy'
+import Game from '../Game'
 import GameCore from '../GameCore'
 import BaseWeapon from './BaseWeapon'
 import { BulletGroup } from './BulletGroup'
 
-export default class BaseBullet extends Phaser.GameObjects.Sprite {
+export default class BaseBullet extends Phaser.Physics.Arcade.Sprite {
   target: any
   weapon: BaseWeapon
   isDead: boolean
@@ -26,7 +27,7 @@ export default class BaseBullet extends Phaser.GameObjects.Sprite {
     frame: string | number = Weapons.LEG,
     x: number = 0,
     y: number = 0,
-    texture: string | Phaser.Textures.Texture = 'main',
+    texture: string | Phaser.Textures.Texture = 'main'
   ) {
     super(group.scene, x, y, texture, frame)
     this.isDead = false
@@ -78,8 +79,42 @@ export default class BaseBullet extends Phaser.GameObjects.Sprite {
     return isHit
   }
   OnHasHitAnObject(enemy: Enemy) {}
-  OnHasHitWall(e) {
+  OnHasHitWall(enemy: Enemy) {
     this.DeSpawn()
+  }
+
+  AimForRandomEnemy() {
+    const enemy = Phaser.Math.RND.pick(Game.Core.Enemies)
+    if (enemy) {
+      this.ApplyInitialVelocity(enemy)
+    } else {
+      this.ApplyPlayerFacingVelocity()
+    }
+  }
+  ApplyPlayerFacingVelocity(hasAngle: boolean = true) {
+    const playerLastFaceDirection = Game.Core.Player.lastFaceDirection
+    playerLastFaceDirection.normalize()
+    if (playerLastFaceDirection.x === 0 && playerLastFaceDirection.y === 0) {
+      playerLastFaceDirection.x = 1
+    }
+    this.setVelocity(this.TrueSpeed * playerLastFaceDirection.x, this.TrueSpeed * playerLastFaceDirection.y)
+    if (hasAngle) {
+      this.setAngle(Phaser.Math.RadToDeg(this.AngleFromVelocityRadians(this.body.velocity)))
+    }
+  }
+  ApplyInitialVelocity(enemy: Enemy, hasAngle = true) {
+    const pos = new Phaser.Math.Vector2(0, 0)
+    pos.x = enemy.body.position.x - Game.Core.Player.x
+    pos.y = enemy.body.position.y - Game.Core.Player.y
+    pos.normalize()
+    this.setVelocity(pos.x * this.TrueSpeed, pos.y * this.TrueSpeed)
+    if (hasAngle) {
+      this.setAngle(Phaser.Math.RadToDeg(this.AngleFromVelocityRadians(this.body.velocity)))
+    }
+  }
+  AngleFromVelocityRadians(velocity: Phaser.Math.Vector2): number {
+    const right = Phaser.Math.Vector2.RIGHT
+    return Math.atan2(velocity.y - right.y, velocity.x - right.x)
   }
 
   get Body() {

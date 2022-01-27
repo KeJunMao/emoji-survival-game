@@ -30,6 +30,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
   HasWalkingAnimation: boolean
   invulTime: number
   private _invul: boolean
+  WorldBoxCollider: Phaser.Geom.Rectangle
+  private _blinkTimeout: Phaser.Time.TimerEvent
   public get IsInvul(): boolean {
     return this._invul
   }
@@ -37,7 +39,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (this._invul !== value) {
       this._invul = value
       if (this._invul) {
-        this.setTintFill(16777147)
+        this.setTintFill(0xffffbb)
       } else {
         this.clearTint()
       }
@@ -98,6 +100,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     for (let i = 0; i <= this.maxHistory; i++) {
       this.posHistory.push(new Phaser.Math.Vector2(this.x, this.y))
     }
+    this.WorldBoxCollider = new Phaser.Geom.Rectangle(0, 0, this.scene.renderer.width, this.scene.renderer.height)
   }
 
   RecoverHp(hp: number) {
@@ -151,7 +154,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (!this.receivingDamage && !(this.IsInvul || this.hp <= 0)) {
       if (this.shields > 0) {
         this.shields -= 1
-        this.OnGetDamaged(16777147, 240)
+        this.OnGetDamaged(0xffffbb, 240)
         return Game.Core.scene.events.emit('Player_LostShield')
       }
       if (this.armor > 0) {
@@ -186,7 +189,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.invulTime += time
   }
 
-  OnGetDamaged(a = 0, b = 0) {}
+  OnGetDamaged(fill = 16711680, delay = 120) {
+    if (!this.receivingDamage) {
+      this.setTintFill(fill)
+      this._blinkTimeout = Game.Core.scene.time.addEvent({
+        delay: delay,
+        loop: false,
+        callback: () => {
+          this.restoreTint()
+        }
+      })
+      this.receivingDamage = true
+    }
+  }
+  restoreTint() {
+    this.setTint(0xffffff)
+    this.receivingDamage = false
+  }
 
   Update(delta: number = 0) {
     if (!this.isDead) {
@@ -210,6 +229,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
       this.historyIndex < this.maxHistory ? this.historyIndex++ : (this.historyIndex = 0)
       this.posHistory[this.historyIndex].copy(this.body.position)
+      this.WorldBoxCollider.x = this.x - 0.5 * this.scene.renderer.width
+      this.WorldBoxCollider.y = this.y - 0.5 * this.scene.renderer.height
     }
   }
 
