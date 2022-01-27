@@ -4,30 +4,80 @@
 			"image": "main.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 426,
-				"h": 914
+				"w": 346,
+				"h": 128
 			},
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "gem_pickup.png",
+					"filename": "fist_bullet.png",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
-						"w": 32,
-						"h": 32
+						"w": 128,
+						"h": 116
 					},
 					"spriteSourceSize": {
-						"x": 6,
-						"y": 2,
-						"w": 20,
-						"h": 28
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 116
 					},
 					"frame": {
 						"x": 0,
 						"y": 0,
-						"w": 20,
-						"h": 28
+						"w": 128,
+						"h": 116
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "leg_bullet.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 159,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 0,
+						"w": 145,
+						"h": 64
+					},
+					"frame": {
+						"x": 128,
+						"y": 0,
+						"w": 145,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "woozy_face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 128,
+						"y": 64,
+						"w": 64,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -49,8 +99,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 20,
-						"y": 0,
+						"x": 192,
+						"y": 64,
 						"w": 64,
 						"h": 60
 					},
@@ -74,34 +124,9 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 84,
-						"y": 0,
+						"x": 256,
+						"y": 64,
 						"w": 59,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "leg_bullet.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 159,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 8,
-						"y": 0,
-						"w": 145,
-						"h": 64
-					},
-					"frame": {
-						"x": 143,
-						"y": 0,
-						"w": 145,
 						"h": 64
 					},
 					"anchor": {
@@ -124,7 +149,7 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 288,
+						"x": 273,
 						"y": 0,
 						"w": 53,
 						"h": 64
@@ -135,49 +160,24 @@
 					}
 				},
 				{
-					"filename": "woozy_face.png",
+					"filename": "bone_bullet.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 64,
+						"w": 26,
 						"h": 64
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 64,
+						"w": 26,
 						"h": 64
 					},
 					"frame": {
-						"x": 341,
-						"y": 0,
-						"w": 64,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "fist_bullet.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 618,
-						"h": 618
-					},
-					"spriteSourceSize": {
-						"x": 115,
-						"y": 150,
-						"w": 388,
-						"h": 352
-					},
-					"frame": {
-						"x": 0,
+						"x": 315,
 						"y": 64,
-						"w": 388,
-						"h": 352
+						"w": 26,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -185,24 +185,24 @@
 					}
 				},
 				{
-					"filename": "bone_bullet.png",
+					"filename": "gem_pickup.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 618,
-						"h": 618
+						"w": 32,
+						"h": 32
 					},
 					"spriteSourceSize": {
-						"x": 96,
-						"y": 58,
-						"w": 426,
-						"h": 498
+						"x": 6,
+						"y": 2,
+						"w": 20,
+						"h": 28
 					},
 					"frame": {
-						"x": 0,
-						"y": 416,
-						"w": 426,
-						"h": 498
+						"x": 326,
+						"y": 0,
+						"w": 20,
+						"h": 28
 					},
 					"anchor": {
 						"x": 0.5,
@@ -215,6 +215,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:54ac6dd03eed7066145082a5d50c4617:4b8eba9dd899109213e10f73ee9db19d:03f91ab73e0f4667800419161e658c40$"
+		"smartupdate": "$TexturePacker:SmartUpdate:520f5f9de8a1352c4211ad59b0408dd1:a98f2b5d9309ade02aece38d3ec468ac:03f91ab73e0f4667800419161e658c40$"
 	}
 }

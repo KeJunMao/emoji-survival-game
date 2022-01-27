@@ -1,6 +1,8 @@
 enum WeaponType {
   VOID,
-  LEG = 'LEG'
+  LEG = 'LEG',
+  BONE = 'BONE',
+  FIST = 'FIST'
 }
 
 export default WeaponType

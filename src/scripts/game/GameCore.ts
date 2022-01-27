@@ -1,9 +1,11 @@
+import WEAPONS from '../consts/WEAPONS'
 import Characters from '../enums/CharacterType'
 import FixedTreasures from '../enums/FixedTreasures'
 import HitVFXType from '../enums/HitVFXType'
 import PickupType from '../enums/PickupType'
 import Scenes from '../enums/Scenes'
 import Treasures from '../enums/TreasureType'
+import WeaponType from '../enums/WeaponType'
 import Weapons from '../enums/WeaponType'
 import BGMan from './BGMan'
 import ContainmentRect from './ContainmentRect'
@@ -205,10 +207,16 @@ export default class GameCore {
       callback()
     }
   }
-  AddWeapon(bulletType: Weapons) {
+  AddWeapon(bulletType: Weapons, isLeveUp: boolean = true) {
     const weapon = this.GetWeapon(bulletType)
     weapon.level = 1
     this.Weapons.push(weapon)
+    if (isLeveUp) {
+      this.LevelUpFactory.RemoveFromStore(weapon)
+    }
+    if (this.MainUI) {
+      this.MainUI.AddWeaponIcon(bulletType)
+    }
   }
   RemoveWeapon(bulletType: Weapons) {
     const weapon = this.Weapons.find(w => w.bulletType === bulletType)
@@ -376,6 +384,31 @@ export default class GameCore {
   }
   SwapToLevelUpScene() {
     Game.Core.SceneManager.EnterLevelUp()
+  }
+
+  GetWeaponLevel(bulletType: WeaponType) {
+    let weapon = this.Weapons.find(t => t.bulletType === bulletType)
+    if (weapon) {
+      return weapon.level
+    }
+    return 0
+  }
+
+  LevelWeaponUp(weaponType: WeaponType, isLeveUp = true) {
+    if (!WEAPONS[weaponType]) return
+    const weapon = this.Weapons.find(t => t.bulletType === weaponType)
+    if (weapon) {
+      weapon.LevelUp()
+    } else {
+      this.AddWeapon(weaponType, isLeveUp)
+      this.SetSeenWeapon(weaponType)
+    }
+  }
+  MakeAndActivatePickup(pickupType: PickupType) {
+    this.MakePickup(this.Player.x, this.Player.y, pickupType).GetTaken()
+  }
+  SetSeenWeapon(weaponType: WeaponType) {
+    // throw new Error('Method not implemented.')
   }
 
   Update(delta: number) {

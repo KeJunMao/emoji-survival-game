@@ -161,4 +161,24 @@ export default class BaseWeapon {
     }
     return bullet
   }
+  LevelUp() {
+    let weaponData = WEAPONS[this.bulletType][this.level]
+    if (!weaponData) return false
+    for (const key in weaponData) {
+      if (this.hasOwnProperty(key)) {
+        this[key] += weaponData[key]
+      }
+    }
+    this.ResetFiringTimer()
+    this.level++
+    if (!this.isPowerUp) {
+      this.Fire()
+    }
+    if (weaponData.addEvolvedWeapon) {
+      Game.Core.LevelUpFactory.AddLateWeapon(weaponData.addEvolvedWeapon)
+    } else {
+      weaponData
+    }
+    return true
+  }
 }
