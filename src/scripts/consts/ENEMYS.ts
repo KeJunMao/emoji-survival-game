@@ -43,7 +43,7 @@ const ENEMYS: {
       power: 4,
       knockback: 1,
       deathKB: 2,
-      xp: 2,
+      xp: 1,
       killedAmount: 0,
       spriteName: 'ghost_enemy.png',
       alpha: 0.5
@@ -57,7 +57,7 @@ const ENEMYS: {
       power: 3,
       knockback: 1,
       deathKB: 2,
-      xp: 3,
+      xp: 1,
       killedAmount: 0,
       spriteName: 'ghost_enemy.png',
       alpha: 0.5
@@ -104,7 +104,7 @@ const ENEMYS: {
       knockback: 0,
       deathKB: 0,
       killedAmount: 0,
-      xp: 2,
+      xp: 1.5,
       spriteName: 'ghost_enemy.png',
       skills: ['FixedDirection'],
       alpha: 0.5

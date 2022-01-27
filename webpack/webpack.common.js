@@ -37,7 +37,7 @@ module.exports = {
     }
   },
   plugins: [
-    new HtmlWebpackPlugin({ gameName: 'EMOJI 生存', template: 'src/index.html' }),
+    new HtmlWebpackPlugin({ gameName: 'Emoji 😊 vs 👻 生存', template: 'src/index.html' }),
     new CopyWebpackPlugin({
       patterns: [
         { from: 'src/assets', to: 'assets' },
