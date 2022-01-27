@@ -153,6 +153,8 @@ export default class BaseWeapon {
               this.FireOneBullet(Game.Core.Player.x, Game.Core.Player.y, i, this.target)
             }
           })
+        } else {
+          this.FireOneBullet(Game.Core.Player.x, Game.Core.Player.y, i, this.target)
         }
       }
     }

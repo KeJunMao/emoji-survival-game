@@ -65,7 +65,6 @@ export default class LevelUpItemPanel extends Phaser.GameObjects.Container {
     let temp = ''
     for (const key in nextLevelData) {
       switch (key) {
-        default:
         case 'power':
           temp += `${isPowerUp ? '[全部]' : ''}攻击力增加${(nextLevelData[key] * 100).toFixed(0)}%\n`
           break
@@ -84,7 +83,7 @@ export default class LevelUpItemPanel extends Phaser.GameObjects.Container {
           }${isPowerUp ? '%' : ''}秒\n`
           break
         case 'speed':
-          temp += `${isPowerUp ? '[全部]' : ''}武器速度增加${(nextLevelData[key] * 100).toFixed(0)}秒\n`
+          temp += `${isPowerUp ? '[全部]' : ''}武器速度增加${(nextLevelData[key] * 100).toFixed(0)}%\n`
         case 'magnet':
           temp += '拾取范围增加' + (100 * nextLevelData[key]).toFixed(0) + '%\n'
           break
