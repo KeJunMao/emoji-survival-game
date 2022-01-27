@@ -4,7 +4,7 @@
 			"image": "main.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 346,
+				"w": 432,
 				"h": 128
 			},
 			"scale": 1,
@@ -110,7 +110,7 @@
 					}
 				},
 				{
-					"filename": "ghost_enemy.png",
+					"filename": "ghost_boss_enemy.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -135,6 +135,31 @@
 					}
 				},
 				{
+					"filename": "ghost_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 59,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 59,
+						"h": 64
+					},
+					"frame": {
+						"x": 273,
+						"y": 0,
+						"w": 59,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
 					"filename": "skull_face.png",
 					"rotated": false,
 					"trimmed": false,
@@ -149,10 +174,60 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 273,
-						"y": 0,
+						"x": 315,
+						"y": 64,
 						"w": 53,
 						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "zombie_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 64
+					},
+					"frame": {
+						"x": 332,
+						"y": 0,
+						"w": 52,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "bat_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 47
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 47
+					},
+					"frame": {
+						"x": 368,
+						"y": 64,
+						"w": 64,
+						"h": 47
 					},
 					"anchor": {
 						"x": 0.5,
@@ -174,8 +249,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 315,
-						"y": 64,
+						"x": 384,
+						"y": 0,
 						"w": 26,
 						"h": 64
 					},
@@ -199,7 +274,7 @@
 						"h": 28
 					},
 					"frame": {
-						"x": 326,
+						"x": 410,
 						"y": 0,
 						"w": 20,
 						"h": 28
@@ -215,6 +290,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:520f5f9de8a1352c4211ad59b0408dd1:a98f2b5d9309ade02aece38d3ec468ac:03f91ab73e0f4667800419161e658c40$"
+		"smartupdate": "$TexturePacker:SmartUpdate:b7a5b05b8dc63d11608b41b5c987d75a:8f084fc9f7d0d97fae31878342617e66:03f91ab73e0f4667800419161e658c40$"
 	}
 }

@@ -1,13 +1,12 @@
-import STAGES from '../consts/STAGES'
+import STAGES, { StageEvent } from '../consts/STAGES'
 import EnemyType from '../enums/EnemyType'
 import StageType from '../enums/StageType'
 import EnemyGroup from './enemy/EnemyGroup'
 import Game from './Game'
+import StageEventManager from './StageEventManager'
 
 export default class Stage {
-  CheckMinute() {
-    // throw new Error('Method not implemented.')
-  }
+  stageEventManager: StageEventManager
   levelName: string
   description: string
   minute: number
@@ -33,7 +32,7 @@ export default class Stage {
   levelType: StageType
   rectOuter: Phaser.Geom.Rectangle
   rectInner: Phaser.Geom.Rectangle
-  events: never[]
+  events: StageEvent[]
   treasure: null
   SpawnTimer: Phaser.Time.TimerEvent
   DestructibleTimer: Phaser.Time.TimerEvent
@@ -62,12 +61,12 @@ export default class Stage {
     this.hasTileset = false
     this.scene = scene
     this.levelType = stage
-    // this.stageEventManager = new Ye(this.scene; this)
+    this.stageEventManager = new StageEventManager(scene, this)
   }
   Init() {
     this.minute = 0
     const stageData = STAGES[this.levelType][this.minute]
-    this.updateData(stageData)
+    this.UpdateData(stageData)
     this.rectOuter = new Phaser.Geom.Rectangle(
       -0.5 * this.scene.renderer.width - 150,
       -0.5 * this.scene.renderer.height - 150,
@@ -85,7 +84,46 @@ export default class Stage {
     }
   }
 
-  updateData(stageData) {
+  CheckMinute() {
+    var e,
+      t = Math.floor(Game.Core.SurvivedSeconds / 60)
+    t > this.minute &&
+      (e = STAGES[this.levelType].find(e => e.minute === t)) &&
+      ((this.minute = e.minute), this.UpdateData(e)),
+      (this.hasAttachedTreasure = !1),
+      this.SpawnBoss()
+  }
+  SpawnBoss() {
+    for (let t = 0; t < this.bossPools.length; t++) {
+      if (!this.bossPools[t].enabled) continue
+      let i = 2 * Math.PI * Math.random(),
+        s = 256 * Math.random(),
+        n = Game.Core.Player.x + 0.9 * Math.cos(i) * (this.scene.renderer.width + s),
+        a = Game.Core.Player.y + 0.9 * Math.sin(i) * (this.scene.renderer.height + s)
+      var e = this.bossPools[t].SpawnAt(n, a)
+      ;(e.isTeleportOnCull = !0),
+        !this.hasAttachedTreasure &&
+          this.treasure &&
+          this.SetTreasureLevelFromChance(this.treasure) > 0 &&
+          ((this.hasAttachedTreasure = !0), e.AttachTreasure(this.treasure))
+    }
+  }
+  SetTreasureLevelFromChance(e: any) {
+    var t,
+      i = null === (t = Game.Core.Player) || void 0 === t ? void 0 : t.luck
+    return (
+      void 0 === i && (i = 1),
+      100 * Math.random() <= e.chances[0] * i
+        ? ((e.level = 3), 3)
+        : 100 * Math.random() <= e.chances[1] * i
+        ? ((e.level = 2), 2)
+        : 100 * Math.random() <= e.chances[2] * i
+        ? ((e.level = 1), 1)
+        : 0
+    )
+  }
+
+  UpdateData(stageData) {
     this.events = []
     this.bosses = []
     this.treasure = null
@@ -100,7 +138,7 @@ export default class Stage {
   }
   playEvents() {
     this.events.forEach(v => {
-      // this.stageEventManager.TriggerEvent(e)
+      this.stageEventManager.TriggerEvent(v)
     })
   }
   updateTimers() {
@@ -135,7 +173,7 @@ export default class Stage {
     })
   }
   SpawnDestructibleOutOfSight() {
-    console.log('SpawnDestructibleOutOfSight')
+    // console.log('SpawnDestructibleOutOfSight')
     // console.log(this.pools[0].spawned)
   }
   updateEnemyPools() {
@@ -151,7 +189,7 @@ export default class Stage {
         this.pools.push(new EnemyGroup(this.scene, e))
       }
     })
-    this.bossPools.forEach(e => {
+    this.bosses.forEach(e => {
       const enemy = this.bossPools.find(e => e.enemyType === e)
       if (enemy) {
         enemy.enabled = true
@@ -160,6 +198,7 @@ export default class Stage {
       }
     })
   }
+
   SpawnEnemiesInOuterRect() {
     if (Game.Core.IsTimeStopped) {
       return
@@ -177,12 +216,19 @@ export default class Stage {
       flag = true
     }
     if (flag) {
-      // this.SwarmCheck()
+      this.SwarmCheck()
     }
   }
   SwarmCheck() {
     if (!Game.Core.IsTimeStopped)
       for (var e = 0; Game.Core.Enemies.length < this.minimum * this.minimumMultiplier && e < this.maximum; )
         this.SpawnEnemiesInOuterRect(), e++
+  }
+  SpawnAt(e, t, i, s) {
+    if (Game.Core.IsTimeStopped) return null
+    if (Game.Core.Enemies.length >= this.maximum) return null
+    let n = this.pools.find(e => e.enemyType === i),
+      a
+    return n && (a = n.SpawnAt(e, t, s)), a
   }
 }

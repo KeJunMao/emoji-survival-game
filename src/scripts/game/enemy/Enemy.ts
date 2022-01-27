@@ -33,9 +33,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   res_Rosary: number
   moveTweenIndex: number
   isTeleportOnCull: boolean
-  idleFrameCount: number
   pool: EnemyGroup
-  scalMul: number
   colliderOverride: any
   target: Player
   private _blinkTimeout: Phaser.Time.TimerEvent
@@ -70,7 +68,6 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.res_Rosary = 0
     this.moveTweenIndex = 0
     this.isTeleportOnCull = !1
-    this.idleFrameCount = 0
     this.pool = group
   }
 
@@ -85,10 +82,20 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.speed = enemyData.speed
     this.defaultSpeed = enemyData.speed
     this.alpha = enemyData.alpha ? enemyData.alpha : 1
-    this.scalMul = enemyData.scale ? enemyData.scale : 1
+    this.scaleMul = enemyData.scale ? enemyData.scale : 1
     this.res_Freeze = enemyData.res_Freeze ? enemyData.res_Freeze : 0
     this.res_Rosary = enemyData.res_Rosary ? enemyData.res_Rosary : 0
     this.colliderOverride = enemyData.colliderOverride
+
+    const skills = enemyData.skills
+    if (skills) {
+      if (skills.includes('HPxLevel')) {
+        this.HPxLevel = true
+      }
+      if (skills.includes('FixedDirection')) {
+        this.FixedDirection = true
+      }
+    }
     this.setFrame(enemyData.spriteName)
     this.setPosition(x, y)
     this.scene.physics.add.existing(this)
@@ -250,9 +257,9 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     )
     // this.setAngle(We.TweenAngles[this.moveTweenIndex].angle)
   }
-  // setVelocity(x: number, y: number) {
-  //   this.Body.setVelocity(x, y)
-  // }
+  Disappear() {
+    this.DeSpawn()
+  }
 
   DeSpawn() {
     this.isDead = true

@@ -93,8 +93,7 @@ export default class BaseWeapon {
   onBulletOverlapsEnemy(object1: Phaser.GameObjects.GameObject, object2: Phaser.GameObjects.GameObject) {
     const bullet = object1 as unknown as BaseBullet
     const enemy = object2 as Enemy
-    if (!enemy.isDead) {
-      bullet.HasAlreadyHitObject(enemy)
+    if (!(enemy.isDead || bullet.HasAlreadyHitObject(enemy))) {
       enemy.GetDamaged(this.PPower, this.hitVFX, this.knockback)
     }
   }

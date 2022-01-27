@@ -362,7 +362,8 @@ export default class GameCore {
   }
   GameOver() {
     // throw new Error('Method not implemented.')
-    console.log('Game Over')
+    alert('Game Over')
+    this.SceneManager.TestGameOver()
   }
 
   ClearTimeStop() {

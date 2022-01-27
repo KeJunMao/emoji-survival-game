@@ -14,7 +14,7 @@ const WEAPONS = {
       // 频率 越小越快
       interval: 1350,
       repeatInterval: 100,
-      power: 1,
+      power: 0.1,
       area: 1,
       speed: 1,
       amount: 1,
@@ -56,7 +56,7 @@ const WEAPONS = {
       rarity: 100,
       interval: 3000,
       repeatInterval: 100,
-      power: 1.2,
+      power: 0.2,
       area: 1.5,
       speed: 1,
       amount: 1,

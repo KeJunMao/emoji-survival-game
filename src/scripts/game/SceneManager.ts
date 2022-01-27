@@ -28,4 +28,8 @@ export default class SceneManager {
     // Game.Core.RemoveSnapshot()
     // Game.Core.ExitLevelUpScene()
   }
+
+  TestGameOver() {
+    this.scene.restart(this.MainScene)
+  }
 }
