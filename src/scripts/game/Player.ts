@@ -5,7 +5,7 @@ import Weapons from '../enums/WeaponType'
 import Game from './Game'
 import GameCore from './GameCore'
 
-export default class Player extends Phaser.GameObjects.Sprite {
+export default class Player extends Phaser.Physics.Arcade.Sprite {
   startingWeapon: Weapons
   lastFaceDirection: Phaser.Math.Vector2
   moveSpeed: number
@@ -119,6 +119,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (playerData) {
       for (const key in playerData) {
         if (this.hasOwnProperty(key) && key !== 'level') {
+          if (key === 'maxHp') {
+            this.hp = playerData[key] || this.hp
+          }
           this[key] = playerData[key]
         }
       }
@@ -141,15 +144,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
   }
 
-  setVelocity(x: number, y: number) {
-    this.Body.setVelocity(x, y)
-  }
-  setVelocityX(x: number) {
-    this.Body.setVelocityX(x)
-  }
-  setVelocityY(y: number) {
-    this.Body.setVelocityY(y)
-  }
   GetDamaged(PPower: number = 1) {
     if (!this.receivingDamage && !(this.IsInvul || this.hp <= 0)) {
       if (this.shields > 0) {

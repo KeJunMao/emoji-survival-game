@@ -4,8 +4,8 @@
 			"image": "main.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 446,
-				"h": 128
+				"w": 353,
+				"h": 239
 			},
 			"scale": 1,
 			"frames": [
@@ -49,10 +49,110 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 128,
-						"y": 0,
+						"x": 0,
+						"y": 116,
 						"w": 145,
 						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "movespeed_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 5,
+						"w": 50,
+						"h": 54
+					},
+					"frame": {
+						"x": 0,
+						"y": 180,
+						"w": 50,
+						"h": 54
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "luck_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 5,
+						"w": 35,
+						"h": 52
+					},
+					"frame": {
+						"x": 50,
+						"y": 180,
+						"w": 35,
+						"h": 52
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "magnet_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 16,
+						"y": 6,
+						"w": 30,
+						"h": 51
+					},
+					"frame": {
+						"x": 85,
+						"y": 180,
+						"w": 30,
+						"h": 51
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "growth_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 10,
+						"w": 52,
+						"h": 49
+					},
+					"frame": {
+						"x": 115,
+						"y": 180,
+						"w": 52,
+						"h": 49
 					},
 					"anchor": {
 						"x": 0.5,
@@ -75,9 +175,34 @@
 					},
 					"frame": {
 						"x": 128,
-						"y": 64,
+						"y": 0,
 						"w": 64,
 						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "duration_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 7,
+						"y": 8,
+						"w": 49,
+						"h": 49
+					},
+					"frame": {
+						"x": 128,
+						"y": 64,
+						"w": 49,
+						"h": 49
 					},
 					"anchor": {
 						"x": 0.5,
@@ -99,10 +224,60 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 192,
-						"y": 64,
+						"x": 145,
+						"y": 113,
 						"w": 59,
 						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "speed_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 60,
+						"h": 62
+					},
+					"frame": {
+						"x": 167,
+						"y": 177,
+						"w": 60,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "armor_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 8,
+						"w": 48,
+						"h": 48
+					},
+					"frame": {
+						"x": 177,
+						"y": 64,
+						"w": 48,
+						"h": 48
 					},
 					"anchor": {
 						"x": 0.5,
@@ -124,8 +299,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 251,
-						"y": 64,
+						"x": 192,
+						"y": 0,
 						"w": 59,
 						"h": 64
 					},
@@ -149,10 +324,35 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 273,
-						"y": 0,
+						"x": 204,
+						"y": 112,
 						"w": 53,
 						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "copy_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 8,
+						"w": 48,
+						"h": 48
+					},
+					"frame": {
+						"x": 225,
+						"y": 64,
+						"w": 48,
+						"h": 48
 					},
 					"anchor": {
 						"x": 0.5,
@@ -174,8 +374,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 310,
-						"y": 64,
+						"x": 251,
+						"y": 0,
 						"w": 52,
 						"h": 64
 					},
@@ -185,24 +385,49 @@
 					}
 				},
 				{
-					"filename": "bone_bullet.png",
+					"filename": "maxhealth_powerup.png",
 					"rotated": false,
-					"trimmed": false,
+					"trimmed": true,
 					"sourceSize": {
-						"w": 26,
+						"w": 64,
 						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 26,
-						"h": 64
+						"x": 7,
+						"y": 10,
+						"w": 50,
+						"h": 46
 					},
 					"frame": {
-						"x": 326,
+						"x": 303,
 						"y": 0,
-						"w": 26,
+						"w": 50,
+						"h": 46
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "straw_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
 						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 8,
+						"w": 48,
+						"h": 48
+					},
+					"frame": {
+						"x": 303,
+						"y": 46,
+						"w": 48,
+						"h": 48
 					},
 					"anchor": {
 						"x": 0.5,
@@ -224,8 +449,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 352,
-						"y": 0,
+						"x": 227,
+						"y": 176,
 						"w": 64,
 						"h": 60
 					},
@@ -235,24 +460,24 @@
 					}
 				},
 				{
-					"filename": "magnet_powerup.png",
+					"filename": "bone_bullet.png",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
-						"w": 64,
+						"w": 26,
 						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 16,
-						"y": 6,
-						"w": 30,
-						"h": 51
+						"x": 0,
+						"y": 0,
+						"w": 26,
+						"h": 64
 					},
 					"frame": {
-						"x": 416,
-						"y": 0,
-						"w": 30,
-						"h": 51
+						"x": 257,
+						"y": 112,
+						"w": 26,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -274,8 +499,8 @@
 						"h": 28
 					},
 					"frame": {
-						"x": 416,
-						"y": 51,
+						"x": 283,
+						"y": 64,
 						"w": 20,
 						"h": 28
 					},
@@ -299,9 +524,59 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 362,
-						"y": 79,
+						"x": 283,
+						"y": 94,
 						"w": 64,
+						"h": 47
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "power_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 10,
+						"w": 48,
+						"h": 44
+					},
+					"frame": {
+						"x": 291,
+						"y": 141,
+						"w": 48,
+						"h": 44
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "magnify_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 11,
+						"y": 7,
+						"w": 40,
+						"h": 47
+					},
+					"frame": {
+						"x": 291,
+						"y": 185,
+						"w": 40,
 						"h": 47
 					},
 					"anchor": {
@@ -315,6 +590,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:c697dac985a6b1ab49fcab356b5d3add:bc98f05a6175da25171912c24a171b25:03f91ab73e0f4667800419161e658c40$"
+		"smartupdate": "$TexturePacker:SmartUpdate:45c957d7791bdb82f2e681ff20db1ace:c26ebb75ae7c019f0f105e5733b0c2f1:03f91ab73e0f4667800419161e658c40$"
 	}
 }
