@@ -2,7 +2,7 @@ import DESTRUCTIBLES from '../../consts/DESTRUCTIBLES'
 import DestructibleType from '../../enums/DestructibleType'
 import Game from '../Game'
 import GameCore from '../GameCore'
-import DestructibleGroup from './destructibleGroup'
+import DestructibleGroup from './DestructibleGroup'
 
 export default class Destructible extends Phaser.Physics.Arcade.Sprite {
   hp: number
