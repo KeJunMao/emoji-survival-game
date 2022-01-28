@@ -3,3 +3,5 @@ dist
 .cache
 package-lock.json
 .DS_Store
+game.js
+src/assets/source

@@ -7,6 +7,7 @@ export interface StageEvent {
   eventType: StageEventType
   delay: number
   repeat: number
+  // 值越小，越容易刷新
   chance?: any
   duration?: number
 }
@@ -64,13 +65,13 @@ const STAGES: {
       maxDestructibles: 10,
       minimum: 10,
       frequency: 1500,
-      enemies: [EnemyType.GHOST3]
+      enemies: [EnemyType.GHOST1]
     },
     {
       minute: 1,
       minimum: 30,
       frequency: 1500,
-      enemies: [EnemyType.ZOMBIE, EnemyType.GHOST1],
+      enemies: [EnemyType.ZOMBIE1, EnemyType.GHOST2],
       bosses: [EnemyType.GHOST_BOSS1]
     },
     {
@@ -91,10 +92,10 @@ const STAGES: {
       minimum: 40,
       frequency: 250,
       enemies: [EnemyType.POO],
-      bosses: [EnemyType.GHOST_BOSS1],
+      bosses: [EnemyType.GHOST_BOSS2],
       events: [
         {
-          eventType: StageEventType.GHOST_SWARM,
+          eventType: StageEventType.BAT_SWARM,
           delay: 5000,
           repeat: 1,
           chance: 10
@@ -112,9 +113,154 @@ const STAGES: {
           eventType: StageEventType.GHOST_SWARM,
           delay: 5000,
           repeat: 1,
+          chance: 50
+        }
+      ]
+    },
+    {
+      minute: 5,
+      minimum: 10,
+      frequency: 1000,
+      enemies: [EnemyType.ZOMBIE2],
+      bosses: [EnemyType.GHOST_BOSS1],
+      events: [
+        {
+          eventType: StageEventType.BAT_SWARM,
+          delay: 5000,
+          repeat: 3,
+          chance: 50
+        }
+      ]
+    },
+    {
+      minute: 6,
+      minimum: 20,
+      frequency: 500,
+      enemies: [EnemyType.ZOMBIE1, EnemyType.ZOMBIE2],
+      events: [
+        {
+          eventType: StageEventType.BAT_SWARM,
+          delay: 5000,
+          repeat: 1,
           chance: 10
         }
       ]
+    },
+    {
+      minute: 7,
+      minimum: 80,
+      frequency: 500,
+      enemies: [EnemyType.GHOST2, EnemyType.GHOST3, EnemyType.ZOMBIE2],
+      bosses: [EnemyType.GHOST_BOSS2],
+      events: [
+        {
+          eventType: StageEventType.BAT_SWARM,
+          delay: 5000,
+          repeat: 4,
+          chance: 70
+        }
+      ]
+    },
+    {
+      minute: 8,
+      minimum: 100,
+      frequency: 1500,
+      enemies: [EnemyType.ZOMBIE1, EnemyType.ZOMBIE2],
+      bosses: [EnemyType.OGRE],
+      events: [
+        {
+          eventType: StageEventType.BAT_SWARM,
+          delay: 15000,
+          repeat: 4,
+          chance: 80
+        }
+      ]
+    },
+    {
+      minute: 9,
+      minimum: 30,
+      frequency: 500,
+      enemies: [EnemyType.ZOMBIE2, EnemyType.OGRE],
+      events: [
+        {
+          eventType: StageEventType.BAT_SWARM,
+          delay: 15000,
+          repeat: 2,
+          chance: 70
+        }
+      ]
+    },
+    {
+      minute: 10,
+      minimum: 10,
+      frequency: 500,
+      enemies: [EnemyType.POO, EnemyType.OGRE],
+      bosses: [EnemyType.GOBLIN_BOSS]
+      // events: []
+    },
+    {
+      minute: 11,
+      minimum: 300,
+      frequency: 100,
+      enemies: [EnemyType.BAT],
+      events: [
+        {
+          eventType: StageEventType.BAT_SWARM,
+          delay: 5000,
+          repeat: 1,
+          chance: 10
+        }
+      ]
+    },
+    {
+      minute: 12,
+      minimum: 20,
+      frequency: 250,
+      enemies: [EnemyType.GOBLIN, EnemyType.GHOST2, EnemyType.ALIEN],
+      bosses: [EnemyType.GHOST_BOSS1],
+      events: [
+        {
+          eventType: StageEventType.BAT_SWARM,
+          delay: 5000,
+          repeat: 1,
+          chance: 10
+        }
+      ]
+    },
+    {
+      minute: 13,
+      minimum: 200,
+      frequency: 100,
+      enemies: [EnemyType.OGRE, EnemyType.GHOST2, EnemyType.GHOST3],
+      bosses: [EnemyType.GHOST_BOSS1],
+      events: [
+        {
+          eventType: StageEventType.BAT_SWARM,
+          delay: 1200,
+          repeat: 20,
+          chance: 70
+        },
+        {
+          eventType: StageEventType.GHOST_SWARM,
+          delay: 2300,
+          repeat: 20,
+          chance: 70
+        }
+      ]
+    },
+    {
+      minute: 14,
+      minimum: 100,
+      frequency: 100,
+      enemies: [EnemyType.ALIEN, EnemyType.ZOMBIE1],
+      bosses: [EnemyType.HORN]
+    },
+    {
+      minute: 15,
+      minimum: 100,
+      frequency: 100,
+      enemies: [EnemyType.GOBLIN, EnemyType.HORN],
+      bosses: [EnemyType.ALIEN_BOSS]
     }
   ]
 }

@@ -4,7 +4,7 @@
 			"image": "main.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 756,
+				"w": 1059,
 				"h": 128
 			},
 			"scale": 1,
@@ -35,6 +35,81 @@
 					}
 				},
 				{
+					"filename": "zombie1_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 81,
+						"h": 79
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 81,
+						"h": 79
+					},
+					"frame": {
+						"x": 128,
+						"y": 0,
+						"w": 81,
+						"h": 79
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "growth_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 10,
+						"w": 52,
+						"h": 49
+					},
+					"frame": {
+						"x": 128,
+						"y": 79,
+						"w": 52,
+						"h": 49
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "duration_powerup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 7,
+						"y": 8,
+						"w": 49,
+						"h": 49
+					},
+					"frame": {
+						"x": 180,
+						"y": 79,
+						"w": 49,
+						"h": 49
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
 					"filename": "leg_bullet.png",
 					"rotated": false,
 					"trimmed": true,
@@ -49,7 +124,7 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 128,
+						"x": 209,
 						"y": 0,
 						"w": 145,
 						"h": 64
@@ -74,9 +149,134 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 128,
+						"x": 229,
 						"y": 64,
 						"w": 64,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "goblin_boss_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 62,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 62,
+						"h": 64
+					},
+					"frame": {
+						"x": 293,
+						"y": 64,
+						"w": 62,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "ogre_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 61,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 354,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "ghost1_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 59,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 59,
+						"h": 64
+					},
+					"frame": {
+						"x": 355,
+						"y": 64,
+						"w": 59,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "ghost2_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 59,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 59,
+						"h": 64
+					},
+					"frame": {
+						"x": 414,
+						"y": 64,
+						"w": 59,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "ghost_boss1_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 59,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 59,
+						"h": 64
+					},
+					"frame": {
+						"x": 415,
+						"y": 0,
+						"w": 59,
 						"h": 64
 					},
 					"anchor": {
@@ -99,7 +299,7 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 192,
+						"x": 473,
 						"y": 64,
 						"w": 59,
 						"h": 64
@@ -124,9 +324,34 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 251,
-						"y": 64,
+						"x": 474,
+						"y": 0,
 						"w": 59,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "horns_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 57,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 57,
+						"h": 64
+					},
+					"frame": {
+						"x": 532,
+						"y": 64,
+						"w": 57,
 						"h": 64
 					},
 					"anchor": {
@@ -149,7 +374,7 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 273,
+						"x": 533,
 						"y": 0,
 						"w": 56,
 						"h": 64
@@ -174,9 +399,34 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 310,
-						"y": 64,
+						"x": 589,
+						"y": 0,
 						"w": 55,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "goblin_enemy.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 62,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 54,
+						"h": 64
+					},
+					"frame": {
+						"x": 589,
+						"y": 64,
+						"w": 54,
 						"h": 64
 					},
 					"anchor": {
@@ -199,8 +449,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 329,
-						"y": 0,
+						"x": 643,
+						"y": 64,
 						"w": 53,
 						"h": 64
 					},
@@ -224,9 +474,34 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 365,
-						"y": 64,
+						"x": 644,
+						"y": 0,
 						"w": 52,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "alien_boss_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 51,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 51,
+						"h": 64
+					},
+					"frame": {
+						"x": 696,
+						"y": 0,
+						"w": 51,
 						"h": 64
 					},
 					"anchor": {
@@ -249,8 +524,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 382,
-						"y": 0,
+						"x": 696,
+						"y": 64,
 						"w": 26,
 						"h": 64
 					},
@@ -274,8 +549,8 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 408,
-						"y": 0,
+						"x": 722,
+						"y": 64,
 						"w": 60,
 						"h": 62
 					},
@@ -299,8 +574,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 417,
-						"y": 62,
+						"x": 747,
+						"y": 0,
 						"w": 64,
 						"h": 60
 					},
@@ -324,10 +599,35 @@
 						"h": 54
 					},
 					"frame": {
-						"x": 468,
-						"y": 0,
+						"x": 782,
+						"y": 60,
 						"w": 50,
 						"h": 54
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "alien_enemy.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 53
+					},
+					"frame": {
+						"x": 811,
+						"y": 0,
+						"w": 64,
+						"h": 53
 					},
 					"anchor": {
 						"x": 0.5,
@@ -349,8 +649,8 @@
 						"h": 52
 					},
 					"frame": {
-						"x": 481,
-						"y": 54,
+						"x": 832,
+						"y": 53,
 						"w": 35,
 						"h": 52
 					},
@@ -374,60 +674,10 @@
 						"h": 51
 					},
 					"frame": {
-						"x": 516,
-						"y": 54,
+						"x": 867,
+						"y": 53,
 						"w": 30,
 						"h": 51
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "growth_powerup.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 10,
-						"w": 52,
-						"h": 49
-					},
-					"frame": {
-						"x": 518,
-						"y": 0,
-						"w": 52,
-						"h": 49
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "duration_powerup.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 7,
-						"y": 8,
-						"w": 49,
-						"h": 49
-					},
-					"frame": {
-						"x": 546,
-						"y": 49,
-						"w": 49,
-						"h": 49
 					},
 					"anchor": {
 						"x": 0.5,
@@ -449,35 +699,10 @@
 						"h": 48
 					},
 					"frame": {
-						"x": 570,
+						"x": 875,
 						"y": 0,
 						"w": 48,
 						"h": 48
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "gem_pickup.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 2,
-						"w": 20,
-						"h": 28
-					},
-					"frame": {
-						"x": 546,
-						"y": 98,
-						"w": 20,
-						"h": 28
 					},
 					"anchor": {
 						"x": 0.5,
@@ -499,7 +724,7 @@
 						"h": 48
 					},
 					"frame": {
-						"x": 595,
+						"x": 897,
 						"y": 48,
 						"w": 48,
 						"h": 48
@@ -524,7 +749,7 @@
 						"h": 48
 					},
 					"frame": {
-						"x": 618,
+						"x": 923,
 						"y": 0,
 						"w": 48,
 						"h": 48
@@ -549,7 +774,7 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 595,
+						"x": 897,
 						"y": 96,
 						"w": 32,
 						"h": 32
@@ -574,7 +799,7 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 627,
+						"x": 929,
 						"y": 96,
 						"w": 31,
 						"h": 32
@@ -599,7 +824,7 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 643,
+						"x": 945,
 						"y": 48,
 						"w": 64,
 						"h": 47
@@ -624,10 +849,35 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 666,
+						"x": 971,
 						"y": 0,
 						"w": 40,
 						"h": 47
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "gem_pickup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 2,
+						"w": 20,
+						"h": 28
+					},
+					"frame": {
+						"x": 960,
+						"y": 95,
+						"w": 20,
+						"h": 28
 					},
 					"anchor": {
 						"x": 0.5,
@@ -649,8 +899,8 @@
 						"h": 46
 					},
 					"frame": {
-						"x": 706,
-						"y": 0,
+						"x": 1009,
+						"y": 47,
 						"w": 50,
 						"h": 46
 					},
@@ -674,8 +924,8 @@
 						"h": 44
 					},
 					"frame": {
-						"x": 707,
-						"y": 46,
+						"x": 1011,
+						"y": 0,
 						"w": 48,
 						"h": 44
 					},
@@ -690,6 +940,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:d22e7350f5fb98867f4cd596f42b30e7:859c6fa1d3e087307ddf4f700bb64678:03f91ab73e0f4667800419161e658c40$"
+		"smartupdate": "$TexturePacker:SmartUpdate:2f1b9f46df42925d4030d53777866871:2767dd60c90e7a99c5e3ab3b7511ff8c:03f91ab73e0f4667800419161e658c40$"
 	}
 }
