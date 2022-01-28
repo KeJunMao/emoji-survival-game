@@ -119,10 +119,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (playerData) {
       for (const key in playerData) {
         if (this.hasOwnProperty(key) && key !== 'level') {
-          if (key === 'maxHp') {
-            this.hp = playerData[key] || this.hp
-          }
-          this[key] = playerData[key]
+          this[key] += playerData[key]
         }
       }
       if (playerData.cooldown) {

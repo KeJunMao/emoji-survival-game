@@ -38,6 +38,9 @@ export default class PowerUpWeapon extends BaseWeapon {
     Game.Core.Player.armor += this.armor
     Game.Core.Player.duration += this.duration
     Game.Core.Player.maxHp += Game.Core.Player.maxHp * this.maxHp
+    if (this.maxHp) {
+      Game.Core.Player.RecoverHp(Game.Core.Player.maxHp)
+    }
     this.cooldown > 0 && Game.Core.ResetWeaponCooldowns()
     if (this.magnet) {
       Game.Core.Magnet.radius += Game.Core.Magnet.radius * this.magnet
