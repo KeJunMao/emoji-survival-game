@@ -172,7 +172,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.Body.enable = true
     this.setScale(GameCore.PixelScale)
     this.RecoverHp(this.maxHp)
-    this.SetInvulForMilliSeconds(2e3)
+    this.SetInvulForMilliSeconds(2000)
     Game.Core.PlayerUI.Update()
   }
   SetInvulForMilliSeconds(time: number) {

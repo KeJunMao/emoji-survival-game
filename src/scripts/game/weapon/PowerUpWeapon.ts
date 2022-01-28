@@ -48,7 +48,7 @@ export default class PowerUpWeapon extends BaseWeapon {
     }
   }
   LevelUp() {
-    return this.resetBonuses(), !!super.LevelUp() && (this.Apply(), !0)
+    return this.resetBonuses(), !!super.LevelUp() && (this.Apply(), true)
   }
   MakeLevelOne() {
     this.resetBonuses()

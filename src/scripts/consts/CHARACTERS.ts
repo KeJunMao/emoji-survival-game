@@ -10,7 +10,7 @@ const CHARACTERS = {
       charName: 'Woozy Face',
       surname: '屑',
       spriteName: 'woozy_face.png',
-      description: 'Attacks deal 10% more damage every 10 levels (max +50%).',
+      description: '每10级伤害提升10% (最多 +50%).',
       isBought: false,
       price: 0,
       maxHp: 100,

@@ -1,4 +1,5 @@
 import STAGES, { StageEvent } from '../consts/STAGES'
+import DestructibleType from '../enums/DestructibleType'
 import EnemyType from '../enums/EnemyType'
 import StageType from '../enums/StageType'
 import EnemyGroup from './enemy/EnemyGroup'
@@ -36,22 +37,23 @@ export default class Stage {
   treasure: null
   SpawnTimer: Phaser.Time.TimerEvent
   DestructibleTimer: Phaser.Time.TimerEvent
+  destructibleType: DestructibleType
   constructor(scene: Phaser.Scene, stage: StageType) {
     this.levelName = ''
     this.description = ''
     this.minute = 0
-    this.frequency = 1e3
+    this.frequency = 1000
     this.pause = 0
     this.startingSpawns = 0
     this.minimum = 0
     this.maximum = 500
-    // this.destructibleType = ne.BRAZIER;
+    this.destructibleType = DestructibleType.GIFT
     this.enemies = new Array()
     this.bosses = new Array()
     this.BGTextureName = ''
     this.minimumMultiplier = 1
     this.maxTreasureLuck = 20
-    this.destructibleFreq = 1e4
+    this.destructibleFreq = 10000
     this.destructibleChance = 5
     this.destructibleChanceMax = 50
     this.maxDestructibles = 10
@@ -79,6 +81,7 @@ export default class Stage {
       this.scene.renderer.width + 100,
       this.scene.renderer.height + 100
     )
+    // TODO: 场景加成
     for (let e = 0; e < this.startingSpawns; e++) {
       this.SpawnEnemiesInOuterRect()
     }
@@ -90,7 +93,7 @@ export default class Stage {
     t > this.minute &&
       (e = STAGES[this.levelType].find(e => e.minute === t)) &&
       ((this.minute = e.minute), this.UpdateData(e)),
-      (this.hasAttachedTreasure = !1),
+      (this.hasAttachedTreasure = false),
       this.SpawnBoss()
   }
   SpawnBoss() {
@@ -101,11 +104,11 @@ export default class Stage {
         n = Game.Core.Player.x + 0.9 * Math.cos(i) * (this.scene.renderer.width + s),
         a = Game.Core.Player.y + 0.9 * Math.sin(i) * (this.scene.renderer.height + s)
       var e = this.bossPools[t].SpawnAt(n, a)
-      ;(e.isTeleportOnCull = !0),
+      ;(e.isTeleportOnCull = true),
         !this.hasAttachedTreasure &&
           this.treasure &&
           this.SetTreasureLevelFromChance(this.treasure) > 0 &&
-          ((this.hasAttachedTreasure = !0), e.AttachTreasure(this.treasure))
+          ((this.hasAttachedTreasure = true), e.AttachTreasure(this.treasure))
     }
   }
   SetTreasureLevelFromChance(e: any) {
@@ -173,8 +176,9 @@ export default class Stage {
     })
   }
   SpawnDestructibleOutOfSight() {
-    // console.log('SpawnDestructibleOutOfSight')
-    // console.log(this.pools[0].spawned)
+    if (100 * Math.random() <= Math.min(this.destructibleChance * Game.Core.Player.luck, this.destructibleChanceMax)) {
+      Game.Core.MakeDestructible(this.destructibleType)
+    }
   }
   updateEnemyPools() {
     this.pools.forEach(e => {

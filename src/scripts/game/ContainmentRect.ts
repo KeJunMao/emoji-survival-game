@@ -10,15 +10,15 @@ export default class ContainmentRect extends Phaser.Geom.Rectangle {
   }
   DespawnIfOutside(e) {
     const t = e[this.index % e.length]
-    if ((this.index++, !t)) return !1
-    if (!t.isCullable && !t.isTeleportOnCull) return !1
+    if ((this.index++, !t)) return false
+    if (!t.isCullable && !t.isTeleportOnCull) return false
     var i = Math.abs(Game.Core.Player.x - t.x),
       s = Math.abs(Game.Core.Player.y - t.y)
     if (!this.contains(i, s)) {
-      if (t.isTeleportOnCull) return t.OnTeleportOnCull(), !1
+      if (t.isTeleportOnCull) return t.OnTeleportOnCull(), false
       t.DeSpawn()
     }
-    return !0
+    return true
   }
   Contains(e) {
     var t = Math.abs(Game.Core.Player.x - e.x),

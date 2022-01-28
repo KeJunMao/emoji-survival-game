@@ -1,5 +1,6 @@
 import WEAPONS from '../consts/WEAPONS'
 import Characters from '../enums/CharacterType'
+import DestructibleType from '../enums/DestructibleType'
 import FixedTreasures from '../enums/FixedTreasures'
 import HitVFXType from '../enums/HitVFXType'
 import PickupType from '../enums/PickupType'
@@ -9,6 +10,7 @@ import WeaponType from '../enums/WeaponType'
 import Weapons from '../enums/WeaponType'
 import BGMan from './BGMan'
 import ContainmentRect from './ContainmentRect'
+import DestructibleGroup from './destructible/destructibleGroup'
 import Enemy from './enemy/Enemy'
 import Game from './Game'
 import LevelUpFactory from './LevelUpFactory'
@@ -68,6 +70,7 @@ export default class GameCore {
   PfxEmitter_Pickups: Phaser.GameObjects.Particles.ParticleEmitterManager
   PlayerUI: PlayerUI
   LevelUpScene: Phaser.Scene
+  destructiblesPool: DestructibleGroup
   public static get PlayerPxSpeed() {
     return GameCore._basePlayerPxSpeed
   }
@@ -99,7 +102,7 @@ export default class GameCore {
   static PixelScale = 1
   static RpixelScale = 1
   static ZDamageNumber = Number.MAX_SAFE_INTEGER - 1e4
-  static ZInGameUI = Number.MAX_SAFE_INTEGER - 1e3
+  static ZInGameUI = Number.MAX_SAFE_INTEGER - 1000
 
   constructor(game: Phaser.Game, scene: Phaser.Scene) {
     this.game = game
@@ -175,12 +178,12 @@ export default class GameCore {
     this.gemsPool = new PickupGroup(this.scene)
     // this.hitVFXPool = new At(e),
     // this.damageNumberPool = new kt(e),
-    // this.destructiblesPool = new Tt(e),
+    this.destructiblesPool = new DestructibleGroup(this.scene)
     this.tickerEvent = this.scene.time.addEvent({
-      delay: 1e3,
+      delay: 1000,
       callback: this.OnTickerEvent,
       callbackScope: this,
-      loop: !0
+      loop: true
     })
     this.MainUI = new MainUi(this.scene)
     this.MainUI.UpdateCoins()
@@ -233,6 +236,16 @@ export default class GameCore {
     this.PlayerUI = new PlayerUI(this.scene)
     this.Magnet = new Magnet(this.scene, 0, 0)
     return this.Player
+  }
+  MakeDestructible(type: DestructibleType) {
+    const vector = this.GetPositionOutOfSight(45)
+    this.destructiblesPool.SpawnAt(vector.x, vector.y, type)
+    while (this.destructiblesPool.spawned.length > this.MaxDestructibles) {
+      const furthest = this.furthest(this.Player, this.destructiblesPool.spawned)
+      if (furthest) {
+        furthest.DeSpawn()
+      }
+    }
   }
 
   OnTickerEvent() {
@@ -311,7 +324,7 @@ export default class GameCore {
       pickups = this.gemsPool.spawned[PickupType.GEM]
 
       for (let i = 0; pickups.length > i && i > maxGems; i++) {
-        const furthest = this.furthest(this.Player, pickups)
+        const furthest = this.furthest<Player, BasePickup>(this.Player, pickups)
         if (furthest) {
           if (this.containmentRect_Screen.Contains(furthest)) {
             flag = true
@@ -321,7 +334,7 @@ export default class GameCore {
           furthest.DeSpawn()
         }
       }
-      const furthest = this.furthest(this.Player, pickups)
+      const furthest = this.furthest<Player, BasePickup>(this.Player, pickups)
       if (flag && furthest) {
         furthest.SetValue(value + furthest.value)
         return furthest
@@ -337,7 +350,7 @@ export default class GameCore {
     }
     return pickup
   }
-  furthest(player: Player, pickups: BasePickup[]): BasePickup {
+  furthest<P extends Phaser.Physics.Arcade.Sprite, T extends Phaser.Physics.Arcade.Sprite>(player: P, pickups: T[]): T {
     let flag = -1
     let furthest
     const x = player.x

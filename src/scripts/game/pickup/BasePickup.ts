@@ -57,7 +57,7 @@ export default class BasePickup extends Phaser.Physics.Arcade.Sprite {
     this.vacuumTween.pause()
   }
   OnTeleportOnCull() {}
-  Init(x = -1e3, y = -1e3) {
+  Init(x = -1000, y = -1000) {
     this.setPosition(x, y)
     this.OnRecycle()
   }
@@ -109,7 +109,7 @@ export default class BasePickup extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
-  SetSeenItem() {
+  SetSeenItem(...arg) {
     // TODO:
   }
 

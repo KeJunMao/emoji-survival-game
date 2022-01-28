@@ -64,28 +64,48 @@ export default class LevelUpItemPanel extends Phaser.GameObjects.Container {
   static ParseLevelUpInfo(nextLevelData: any, isPowerUp: any): string | string[] {
     let temp = ''
     for (const key in nextLevelData) {
+      const v = nextLevelData[key]
       switch (key) {
         case 'power':
-          temp += `${isPowerUp ? '[全部]' : ''}攻击力增加${(nextLevelData[key] * 100).toFixed(0)}%\n`
+          temp += `${isPowerUp ? '[全部]' : ''}攻击力提升${(v * 100).toFixed(0)}%\n`
           break
         case 'area':
-          temp += `${isPowerUp ? '[全部]' : ''}攻击范围增加${(nextLevelData[key] * 100).toFixed(0)}%\n`
+          temp += `${isPowerUp ? '[全部]' : ''}攻击范围提升${(v * 100).toFixed(0)}%\n`
           break
         case 'amount':
-          temp += `${isPowerUp ? '[全部]' : ''}攻击次数增加${nextLevelData[key]}次\n`
+          temp += `${isPowerUp ? '[全部]' : ''}攻击次数增加${v}次\n`
           break
         case 'interval':
-          temp += `${isPowerUp ? '[全部]' : ''}攻击间隔减少${(nextLevelData[key] * -0.001).toFixed(1)}秒\n`
+          temp += `${isPowerUp ? '[全部]' : ''}攻击间隔减少${(v * -0.001).toFixed(1)}秒\n`
           break
         case 'duration':
           temp += `${isPowerUp ? '[全部]' : ''}持续时间增加${
-            isPowerUp ? (nextLevelData[key] * 100).toFixed(1) : (nextLevelData[key] * 0.001).toFixed(1)
+            isPowerUp ? (v * 100).toFixed(1) : (v * 0.001).toFixed(1)
           }${isPowerUp ? '%' : ''}秒\n`
           break
         case 'speed':
-          temp += `${isPowerUp ? '[全部]' : ''}武器速度增加${(nextLevelData[key] * 100).toFixed(0)}%\n`
+          temp += `${isPowerUp ? '[全部]' : ''}弹道速度提升${(v * 100).toFixed(0)}%\n`
+          break
+        case 'cooldown':
+          temp += `${isPowerUp ? '[全部]' : ''}冷却时间减少${(v * -100).toFixed(1)}秒\n`
+          break
         case 'magnet':
-          temp += '拾取范围增加' + (100 * nextLevelData[key]).toFixed(0) + '%\n'
+          temp += '拾取范围提升' + (100 * v).toFixed(0) + '%\n'
+          break
+        case 'armor':
+          temp += `护甲增加${v}\n`
+          break
+        case 'maxHp':
+          temp += `生命上限提升${(v * 100).toFixed(1)}%\n`
+          break
+        case 'growth':
+          temp += '经验增益提升' + (100 * v).toFixed(0) + '%\n'
+          break
+        case 'moveSpeed':
+          temp += '移动速度提升' + (100 * v).toFixed(0) + '%\n'
+          break
+        case 'luck':
+          temp += '幸运值提升' + (100 * v).toFixed(0) + '%\n'
           break
       }
     }

@@ -1,6 +1,7 @@
 import WEAPONS from '../../consts/WEAPONS'
 import HitVFXType from '../../enums/HitVFXType'
 import Weapons from '../../enums/WeaponType'
+import Destructible from '../destructible/Destructible'
 import Enemy from '../enemy/Enemy'
 import Game from '../Game'
 import Stage from '../Stage'
@@ -34,19 +35,19 @@ export default class BaseWeapon {
   hitVFX: HitVFXType
   constructor(bulletType: Weapons, isNewWeapon: boolean = true) {
     this.level = 0
-    this.interval = 1e3
+    this.interval = 1000
     this.repeatInterval = 1000
     this.power = 1
     this.area = 1
     this.speed = 1
     this.amount = 1
-    this.duration = 1e3
+    this.duration = 1000
     this.intervalDependsOnDuration = false
     this.charges = 0
     this.seen = false
     this.addWeapon = null
     this.isPowerUp = false
-    this.hitBoxDelay = 1e3
+    this.hitBoxDelay = 1000
     this.hitVFX = HitVFXType.DEFAULT
     this.knockback = 5
     this.hitsWalls = false
@@ -92,17 +93,24 @@ export default class BaseWeapon {
     // }
   }
   onBulletOverlapsEnemy(object1: Phaser.GameObjects.GameObject, object2: Phaser.GameObjects.GameObject) {
-    const bullet = object1 as unknown as BaseBullet
+    const bullet = object1 as BaseBullet
     const enemy = object2 as Enemy
     if (!(enemy.isDead || bullet.HasAlreadyHitObject(enemy))) {
       enemy.GetDamaged(this.PPower, this.hitVFX, this.knockback)
     }
   }
-  onBulletOverlapsWall(e, t) {
-    e.OnHasHitWall(t)
-    return false
+  onBulletOverlapsWall(object1: Phaser.GameObjects.GameObject, object2: Phaser.GameObjects.GameObject) {
+    // const bullet = object1 as BaseBullet
+    // e.OnHasHitWall(t)
+    // return false
   }
-  onBulletOverlapsDestuctible() {}
+  onBulletOverlapsDestuctible(object1: Phaser.GameObjects.GameObject, object2: Phaser.GameObjects.GameObject) {
+    const bullet = object1 as BaseBullet
+    const destructible = object2 as Destructible
+    if (!bullet.HasAlreadyHitObject(destructible)) {
+      destructible.GetDamaged(this.PPower)
+    }
+  }
   ResetFiringTimer() {
     if (this.firingTimer) {
       this.firingTimer.destroy()
@@ -110,7 +118,7 @@ export default class BaseWeapon {
     const delay = this.intervalDependsOnDuration ? this.duration + this.PInterval : this.PInterval
     this.firingTimer = Game.Core.scene.time.addEvent({
       delay,
-      loop: !0,
+      loop: true,
       callback: this.Fire.bind(this)
     })
   }
@@ -129,7 +137,7 @@ export default class BaseWeapon {
   DPS() {
     return (
       (this.PPower * this.PAmount * this.penetrating * (this.duration / this.hitBoxDelay)) /
-      (this.PInterval / 1e3)
+      (this.PInterval / 1000)
     ).toFixed(2)
   }
   Update(delta: number): void {}

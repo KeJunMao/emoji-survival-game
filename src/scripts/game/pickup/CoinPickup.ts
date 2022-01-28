@@ -18,7 +18,7 @@ export default class CoinPickup extends BasePickup {
     this.setDepth(this.y - Game.Core.Player.y)
   }
   GetTaken(): void {
-    // Game.Core.PlayerOptions.AddCoins(this.value);
+    Game.Core.PlayerOptions.AddCoins(this.value)
     Game.Core.MainUI.UpdateCoins()
     super.GetTaken()
   }

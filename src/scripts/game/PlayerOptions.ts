@@ -1,5 +1,6 @@
 import CharacterType from '../enums/CharacterType'
 import StageType from '../enums/StageType'
+import GameCore from './GameCore'
 
 export default class PlayerOptions {
   RunCoins: number
@@ -27,14 +28,16 @@ export default class PlayerOptions {
   KillCount: {}
   PickupCount: {}
   DestroyedCount: {}
+  Coins: number
+  LifetimeCoins: number
   constructor() {
     this.SelectedCharacter = CharacterType.WOOZY
     this.SelectedStage = StageType.FOREST
     this.SelectedHyper = false
-    // this.Coins = Qi
+    this.Coins = 0
     this.RunCoins = 0
     this.RunEnemies = 0
-    // this.LifetimeCoins = Qi
+    this.LifetimeCoins = 0
     this.LifetimeSurvived = 0
     this.SoundsEnabled = true
     this.MusicEnabled = true
@@ -57,5 +60,11 @@ export default class PlayerOptions {
   }
   Load() {
     // todo: load player options from local storage
+  }
+  AddCoins(value: number) {
+    value *= GameCore.GoldMultiplier
+    this.Coins += value
+    this.RunCoins += value
+    this.LifetimeCoins += value
   }
 }

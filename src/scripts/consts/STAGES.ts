@@ -1,3 +1,4 @@
+import DestructibleType from '../enums/DestructibleType'
 import EnemyType from '../enums/EnemyType'
 import StageEventType from '../enums/StageEventType'
 import StageType from '../enums/StageType'
@@ -21,6 +22,7 @@ export interface StageData {
   hyper?: StageHyper
   startingSpawns?: number
   minute?: number
+  destructibleType?: DestructibleType
   destructibleFreq?: number
   destructibleChance?: number
   destructibleChanceMax?: number
@@ -55,8 +57,8 @@ const STAGES: {
       },
       startingSpawns: 3,
       minute: 0,
-      // destructibleType: ne.BRAZIER,
-      destructibleFreq: 1e3,
+      destructibleType: DestructibleType.BOX,
+      destructibleFreq: 1000,
       destructibleChance: 10,
       destructibleChanceMax: 50,
       maxDestructibles: 10,
@@ -104,6 +106,7 @@ const STAGES: {
       minimum: 40,
       frequency: 250,
       enemies: [EnemyType.POO, EnemyType.BAT],
+      destructibleType: DestructibleType.BOX,
       events: [
         {
           eventType: StageEventType.GHOST_SWARM,

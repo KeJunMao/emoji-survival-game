@@ -13,7 +13,7 @@ export default class FistBullet extends BaseBullet {
     super(group, weapon, indexInWeapon, 'fist_bullet.png', x, y)
     this.previousArea = 0
   }
-  Init(x = -1e3, y = -1e3) {
+  Init(x = -1000, y = -1000) {
     super.Init(x, y)
     this.setScale(0)
     this.previousArea = this.weapon.PArea

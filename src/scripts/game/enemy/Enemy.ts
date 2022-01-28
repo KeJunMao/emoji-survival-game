@@ -56,22 +56,22 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.HPxLevel = false
     this.FixedDirection = false
     this.owner = null
-    this.isDead = !1
-    this.receivingDamage = !1
+    this.isDead = false
+    this.receivingDamage = false
     this._currentDirection = new Phaser.Math.Vector2(0, 0)
     this.defaultName = ''
-    this.isCullable = !0
-    this.IsTimeStopped = !1
-    this.IsFrozen = !1
+    this.isCullable = true
+    this.IsTimeStopped = false
+    this.IsFrozen = false
     this.defaultSpeed = 100
     this.res_Freeze = 0
     this.res_Rosary = 0
     this.moveTweenIndex = 0
-    this.isTeleportOnCull = !1
+    this.isTeleportOnCull = false
     this.pool = group
   }
 
-  Init(x: number = -1e3, y: number = -1e3) {
+  Init(x: number = -1000, y: number = -1000) {
     const enemyData = ENEMYS[this.enemyType][0]
     this.dataMaxHp = enemyData.maxHp
     this.maxHp = enemyData.maxHp

@@ -18,7 +18,7 @@ export default class BaseBullet extends Phaser.Physics.Arcade.Sprite {
   pool: BulletGroup
   indexInWeapon: any
   owner: null
-  objectsHit: Enemy[]
+  objectsHit: Phaser.Physics.Arcade.Sprite[]
 
   constructor(
     group: BulletGroup,
@@ -46,7 +46,7 @@ export default class BaseBullet extends Phaser.Physics.Arcade.Sprite {
     return this.weapon.PSpeed * GameCore.ProjectileSpeed * this._speed
   }
   OnTeleportOnCull() {}
-  Init(x: number = -1e3, y: number = -1e3) {
+  Init(x: number = -1000, y: number = -1000) {
     this.setPosition(x, y)
     this.scene.physics.add.existing(this)
     this.OnRecycle()
@@ -70,7 +70,7 @@ export default class BaseBullet extends Phaser.Physics.Arcade.Sprite {
     this.pool.Return(this)
   }
 
-  HasAlreadyHitObject(enemy: Enemy) {
+  HasAlreadyHitObject(enemy: Phaser.Physics.Arcade.Sprite) {
     const isHit = this.objectsHit.indexOf(enemy) > -1
     if (!isHit) {
       this.objectsHit.push(enemy)
@@ -78,7 +78,7 @@ export default class BaseBullet extends Phaser.Physics.Arcade.Sprite {
     this.OnHasHitAnObject(enemy)
     return isHit
   }
-  OnHasHitAnObject(enemy: Enemy) {}
+  OnHasHitAnObject(enemy: Phaser.Physics.Arcade.Sprite) {}
   OnHasHitWall(enemy: Enemy) {
     this.DeSpawn()
   }

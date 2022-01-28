@@ -1,6 +1,8 @@
 import PickupType from '../enums/PickupType'
 
-const PICKUPS = {
+const PICKUPS: {
+  [key in PickupType]: any
+} = {
   [PickupType.GEM]: {
     name: '经验宝石',
     description: '增加经验',
@@ -25,6 +27,17 @@ const PICKUPS = {
     inTreasures: false,
     seen: true
   },
+  [PickupType.ROAST]: {
+    name: '烤肉',
+    description: '恢复30点血量',
+    tips: '',
+    frameName: 'roast_pickup.png',
+    pickedupAmount: 0,
+    rarity: 50,
+    unlocksAt: 0,
+    value: 30,
+    inTreasures: false
+  },
   [PickupType.WEAPON]: {
     name: '武器',
     description: '',
@@ -36,7 +49,8 @@ const PICKUPS = {
     inTreasures: false,
     hidden: true,
     value: 0
-  }
+  },
+  0: undefined
 }
 
 export default PICKUPS

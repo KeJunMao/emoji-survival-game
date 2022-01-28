@@ -5,8 +5,11 @@ import Game from './Game'
 const F = class {
   weight: number
   weaponType: any
-  constructor(e, t) {
-    ;(this.weight = 0), (this.weaponType = WeaponType.LEG), (this.weaponType = e), (this.weight = t)
+  constructor(weaponType: WeaponType, weight: number) {
+    this.weight = 0
+    this.weaponType = WeaponType.LEG
+    this.weaponType = weaponType
+    this.weight = weight
   }
 }
 export default class LevelUpFactory {
@@ -100,12 +103,12 @@ export default class LevelUpFactory {
     for (const e in WEAPONS)
       if (!(this.ExcludedWeapons.indexOf(e) > -1)) {
         var s = WEAPONS[e][0]
-        s.isPowerUp && ((t += s.rarity), s.rarity > 0 && i.push(new F(e, t)))
+        s.isPowerUp && ((t += s.rarity), s.rarity > 0 && i.push(new F(e as WeaponType, t)))
       }
     var n = Math.random() * t
     return null === (e = i.find(e => e.weight >= n)) || void 0 === e ? void 0 : e.weaponType
   }
-  PullExistingRemainingWeapon(e = !0) {
+  PullExistingRemainingWeapon(e = true) {
     var t,
       i = 0,
       s = new Array(),
@@ -162,7 +165,8 @@ export default class LevelUpFactory {
         Game.Core.Weapons.filter(e => !e.isPowerUp).length >= this.maxTrueWeapons
       )
         continue
-      ;(this.accumulatedWeight += t.rarity), t.rarity > 0 && this.WeightedStore.push(new F(e, this.accumulatedWeight))
+      ;(this.accumulatedWeight += t.rarity),
+        t.rarity > 0 && this.WeightedStore.push(new F(e as WeaponType, this.accumulatedWeight))
     }
   }
   GetRandomWeightedWeaponOrPowerup() {
@@ -177,7 +181,7 @@ export default class LevelUpFactory {
     for (const e in WEAPONS)
       if (!(this.ExcludedWeapons.indexOf(e) > -1)) {
         var s = WEAPONS[e][0]
-        s.isPowerUp || ((t += s.rarity), s.rarity > 0 && i.push(new F(e, t)))
+        s.isPowerUp || ((t += s.rarity), s.rarity > 0 && i.push(new F(e as WeaponType, t)))
       }
     var n = Math.random() * t
     return null === (e = i.find(e => e.weight >= n)) || void 0 === e ? void 0 : e.weaponType
@@ -187,7 +191,7 @@ export default class LevelUpFactory {
       t = 0,
       i = this.GetRandomExistingWeapon()
     i && e.push(i), (i = this.GetRandomExistingWeapon()) && e.indexOf(i) <= -1 && e.push(i)
-    for (var s = this.GetLevelUpOptions(); e.length < s && t < 1e3; ) {
+    for (var s = this.GetLevelUpOptions(); e.length < s && t < 1000; ) {
       var n
       t++,
         void 0 !==
