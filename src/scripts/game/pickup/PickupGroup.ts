@@ -4,6 +4,7 @@ import BasePickup from './BasePickup'
 import CoinPickup from './CoinPickup'
 import GemPickup from './GemPickup'
 import RoastPickup from './RoastPickup'
+import VacuumPickup from './VacuumPickup'
 
 export default class PickupGroup extends Phaser.GameObjects.Group {
   stored: { [key: string]: BasePickup[] }
@@ -64,6 +65,8 @@ export default class PickupGroup extends Phaser.GameObjects.Group {
         return new GemPickup(this, 0, 0)
       case PickupType.ROAST:
         return new RoastPickup(this, 0, 0)
+      case PickupType.VACUUM:
+        return new VacuumPickup(this, 0, 0)
     }
   }
 }

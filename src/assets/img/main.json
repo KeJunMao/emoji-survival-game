@@ -835,23 +835,23 @@
 					}
 				},
 				{
-					"filename": "coin_pickup.png",
+					"filename": "vacum_pickup.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 31,
+						"w": 32,
 						"h": 32
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 31,
+						"w": 32,
 						"h": 32
 					},
 					"frame": {
 						"x": 993,
 						"y": 96,
-						"w": 31,
+						"w": 32,
 						"h": 32
 					},
 					"anchor": {
@@ -910,6 +910,31 @@
 					}
 				},
 				{
+					"filename": "coin_pickup.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 31,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 31,
+						"h": 32
+					},
+					"frame": {
+						"x": 1025,
+						"y": 95,
+						"w": 31,
+						"h": 32
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
 					"filename": "gem_pickup.png",
 					"rotated": false,
 					"trimmed": true,
@@ -924,7 +949,7 @@
 						"h": 28
 					},
 					"frame": {
-						"x": 1024,
+						"x": 1056,
 						"y": 95,
 						"w": 20,
 						"h": 28
@@ -990,6 +1015,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:44f6bca718ea27d12a3f553dab376df5:af8ac29d0a34dec0b75ba48f73d5e678:03f91ab73e0f4667800419161e658c40$"
+		"smartupdate": "$TexturePacker:SmartUpdate:5ab58c83ec4758d224407e53e4f2e679:847c1cf29c08ebc6c137ea7dcafbdd01:03f91ab73e0f4667800419161e658c40$"
 	}
 }

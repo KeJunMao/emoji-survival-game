@@ -248,6 +248,11 @@ export default class GameCore {
     }
   }
 
+  TurnOnVacuum() {
+    const gems = this.gemsPool.spawned[PickupType.GEM]
+    gems.forEach(v => (v.goToPlayer = true))
+  }
+
   OnTickerEvent() {
     this.SurvivedSeconds++
     this.MainUI.SetSurvivedSeconds(this.SurvivedSeconds)

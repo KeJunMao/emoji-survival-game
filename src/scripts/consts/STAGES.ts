@@ -235,12 +235,6 @@ const STAGES: {
       events: [
         {
           eventType: StageEventType.BAT_SWARM,
-          delay: 1200,
-          repeat: 20,
-          chance: 70
-        },
-        {
-          eventType: StageEventType.GHOST_SWARM,
           delay: 2300,
           repeat: 20,
           chance: 70

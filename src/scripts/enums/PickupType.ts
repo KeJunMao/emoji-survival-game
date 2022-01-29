@@ -3,7 +3,8 @@ enum PickupType {
   COIN = 'COIN',
   GEM = 'GEM',
   WEAPON = 'WEAPON',
-  ROAST = 'ROAST'
+  ROAST = 'ROAST',
+  VACUUM = 'VACUUM'
 }
 
 export default PickupType

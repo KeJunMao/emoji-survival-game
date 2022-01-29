@@ -38,6 +38,17 @@ const PICKUPS: {
     value: 30,
     inTreasures: false
   },
+  [PickupType.VACUUM]: {
+    name: '磁石糖',
+    description: '收集所有的经验宝石',
+    tips: '掉落率受运气影响。',
+    frameName: 'vacum_pickup.png',
+    pickedupAmount: 0,
+    rarity: 15,
+    unlocksAt: 12,
+    value: 0,
+    isRare: true
+  },
   [PickupType.WEAPON]: {
     name: '武器',
     description: '',

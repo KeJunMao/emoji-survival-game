@@ -56,8 +56,8 @@ const WEAPONS = {
       rarity: 100,
       interval: 2500,
       repeatInterval: 100,
-      power: 1,
-      area: 1.2,
+      power: 0.8,
+      area: 1,
       speed: 1,
       amount: 1,
       hitsWalls: false
@@ -73,20 +73,17 @@ const WEAPONS = {
       interval: -400
     },
     {
-      area: 0.1,
-      interval: -500
+      area: 0.1
     },
     {
-      amount: 1,
       power: 0.5
     },
     {
-      area: 0.2,
-      power: 0.5
+      area: 0.2
     },
     {
       power: 0.5,
-      interval: -800
+      interval: -400
     }
   ],
   [WeaponType.BONE]: [
