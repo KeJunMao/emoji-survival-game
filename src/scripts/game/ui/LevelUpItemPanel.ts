@@ -67,7 +67,9 @@ export default class LevelUpItemPanel extends Phaser.GameObjects.Container {
       const v = nextLevelData[key]
       switch (key) {
         case 'power':
-          temp += `${isPowerUp ? '[全部]' : ''}攻击力提升${(v * 100).toFixed(0)}%\n`
+          temp += `${isPowerUp ? '[全部]攻击力提升' : '攻击力增加'}${
+            isPowerUp ? (v * 100).toFixed(0) : (v * 10).toFixed(0)
+          }${isPowerUp ? '%' : ''}\n`
           break
         case 'area':
           temp += `${isPowerUp ? '[全部]' : ''}攻击范围提升${(v * 100).toFixed(0)}%\n`

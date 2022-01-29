@@ -8,6 +8,7 @@ import Enemy from '../enemy/Enemy'
 import FistBullet from './FistBullet'
 import BoneBullet from './BoneBullet'
 import RockBullet from './RockBullet'
+import RadioActiveBullet from './RadioactiveBullet'
 
 export class BulletGroup extends Phaser.GameObjects.Group {
   stored: Bullet[]
@@ -68,6 +69,8 @@ export class BulletGroup extends Phaser.GameObjects.Group {
         return new FistBullet(this, weapon, index)
       case Weapons.ROCK:
         return new RockBullet(this, weapon, index)
+      case Weapons.RADIOACTIVE:
+        return new RadioActiveBullet(this, weapon, index)
     }
   }
 }

@@ -24,7 +24,7 @@ export default class BaseBullet extends Phaser.Physics.Arcade.Sprite {
     group: BulletGroup,
     weapon: BaseWeapon,
     indexInWeapon = 0,
-    frame: string | number = Weapons.LEG,
+    frame: string | number = '',
     x: number = 0,
     y: number = 0,
     texture: string | Phaser.Textures.Texture = 'main'

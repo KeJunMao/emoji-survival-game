@@ -14,7 +14,7 @@ const WEAPONS = {
       // 频率 越小越快
       interval: 1350,
       repeatInterval: 100,
-      power: 0.1,
+      power: 1,
       area: 1,
       speed: 1,
       amount: 1,
@@ -54,16 +54,16 @@ const WEAPONS = {
       tips: '',
       isUnlocked: true,
       rarity: 100,
-      interval: 3000,
+      interval: 2500,
       repeatInterval: 100,
-      power: 0.2,
+      power: 1,
       area: 1.2,
       speed: 1,
       amount: 1,
       hitsWalls: false
     },
     {
-      area: 0.2,
+      area: 0.1,
       interval: -200
     },
     {
@@ -81,6 +81,7 @@ const WEAPONS = {
       power: 0.5
     },
     {
+      area: 0.2,
       power: 0.5
     },
     {
@@ -461,6 +462,53 @@ const WEAPONS = {
     },
     {
       penetrating: 2
+    }
+  ],
+  [WeaponType.RADIOACTIVE]: [
+    {
+      level: 1,
+      bulletType: WeaponType.RADIOACTIVE,
+      name: '辐射',
+      description: '吃了来自某国家的海鲜，持续辐射敌人',
+      tips: '',
+      frameName: 'radioactive_bullet.png',
+      isUnlocked: true,
+      rarity: 70,
+      interval: 1000,
+      repeatInterval: 0,
+      power: 0.5,
+      area: 1,
+      speed: 1,
+      amount: 1,
+      knockback: 0
+    },
+    {
+      area: 0.4,
+      power: 0.2
+    },
+    {
+      interval: -100,
+      power: 0.1
+    },
+    {
+      area: 0.2,
+      power: 0.2
+    },
+    {
+      interval: -100,
+      power: 0.2
+    },
+    {
+      area: 0.2,
+      power: 0.1
+    },
+    {
+      interval: -100,
+      power: 0.1
+    },
+    {
+      area: 0.2,
+      power: 0.2
     }
   ]
 }

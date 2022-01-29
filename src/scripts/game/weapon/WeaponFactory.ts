@@ -2,6 +2,7 @@ import WEAPONS from '../../consts/WEAPONS'
 import WeaponType from '../../enums/WeaponType'
 import BaseWeapon from './BaseWeapon'
 import PowerUpWeapon from './PowerUpWeapon'
+import RadioActiveWeapon from './RadioActiveWeapon'
 
 export default class WeaponFactory {
   GetWeapon(weapon: WeaponType): BaseWeapon {
@@ -17,6 +18,10 @@ export default class WeaponFactory {
         return new BaseWeapon(weapon)
       case WeaponType.FIST:
         return new BaseWeapon(weapon)
+      case WeaponType.ROCK:
+        return new BaseWeapon(weapon)
+      case WeaponType.RADIOACTIVE:
+        return new RadioActiveWeapon(weapon)
     }
   }
 }

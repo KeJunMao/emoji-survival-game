@@ -199,7 +199,7 @@ const STAGES: {
     },
     {
       minute: 11,
-      minimum: 200,
+      minimum: 300,
       frequency: 100,
       enemies: [EnemyType.BAT],
       events: [
@@ -207,7 +207,7 @@ const STAGES: {
           eventType: StageEventType.BAT_SWARM,
           delay: 5000,
           repeat: 1,
-          chance: 80
+          chance: 10
         }
       ]
     },
@@ -260,6 +260,14 @@ const STAGES: {
       minimum: 100,
       frequency: 100,
       enemies: [EnemyType.GOBLIN, EnemyType.HORN],
+      bosses: [EnemyType.ALIEN_BOSS]
+    },
+    {
+      destructibleType: DestructibleType.GIFT,
+      minute: 16,
+      minimum: 500,
+      frequency: 100,
+      enemies: [EnemyType.HORN, EnemyType.GOBLIN, EnemyType.ALIEN],
       bosses: [EnemyType.ALIEN_BOSS]
     }
   ]

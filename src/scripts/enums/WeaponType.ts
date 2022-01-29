@@ -4,6 +4,7 @@ enum WeaponType {
   BONE = 'BONE',
   FIST = 'FIST',
   ROCK = 'ROCK',
+  RADIOACTIVE = 'RADIOACTIVE',
   MAGNET = 'MAGNET',
   MIGHT = 'MIGHT',
   AMOUNT = 'AMOUNT',
