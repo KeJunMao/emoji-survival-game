@@ -7,6 +7,7 @@ import Game from '../Game'
 import Enemy from '../enemy/Enemy'
 import FistBullet from './FistBullet'
 import BoneBullet from './BoneBullet'
+import RockBullet from './RockBullet'
 
 export class BulletGroup extends Phaser.GameObjects.Group {
   stored: Bullet[]
@@ -39,17 +40,16 @@ export class BulletGroup extends Phaser.GameObjects.Group {
     if (!bullet) {
       bullet = this.Make(weapon, index)
       bullet.Init()
-      this.add(bullet, true)
-      this.spawned.push(bullet)
-      Game.Core.BulletGroup.add(bullet, false)
     }
+    this.add(bullet, true)
+    this.spawned.push(bullet)
+    Game.Core.BulletGroup.add(bullet, false)
     return bullet
   }
 
   Return(bullet: BaseBullet) {
     this.scene.children.remove(bullet)
-    // 删掉就不触发重叠事件
-    // this.remove(bullet, true, false)
+    this.remove(bullet, true, false)
     this.spawned.splice(this.spawned.indexOf(bullet), 1)
     Game.Core.BulletGroup.remove(bullet, false)
     this.stored.push(bullet)
@@ -66,6 +66,8 @@ export class BulletGroup extends Phaser.GameObjects.Group {
         return new BoneBullet(this, weapon, index)
       case Weapons.FIST:
         return new FistBullet(this, weapon, index)
+      case Weapons.ROCK:
+        return new RockBullet(this, weapon, index)
     }
   }
 }

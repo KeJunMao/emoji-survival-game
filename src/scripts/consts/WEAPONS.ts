@@ -93,7 +93,7 @@ const WEAPONS = {
       level: 1,
       bulletType: WeaponType.BONE,
       name: '骨',
-      description: '骨骨会弹弹',
+      description: '隐藏角色的骨头',
       tips: '',
       frameName: 'bone_bullet.png',
       isUnlocked: true,
@@ -423,6 +423,44 @@ const WEAPONS = {
     },
     {
       luck: 0.1
+    }
+  ],
+  [WeaponType.ROCK]: [
+    {
+      level: 1,
+      bulletType: WeaponType.ROCK,
+      name: '石头',
+      description: '小时候扔过的石头，有点重，砸人很疼',
+      tips: '',
+      frameName: 'rock_bullet.png',
+      isUnlocked: true,
+      rarity: 100,
+      interval: 4000,
+      repeatInterval: 200,
+      power: 2,
+      area: 1,
+      speed: 1,
+      amount: 1,
+      penetrating: 2,
+      duration: 2000
+    },
+    {
+      amount: 1
+    },
+    {
+      power: 2
+    },
+    {
+      penetrating: 2
+    },
+    {
+      amount: 1
+    },
+    {
+      power: 2
+    },
+    {
+      penetrating: 2
     }
   ]
 }

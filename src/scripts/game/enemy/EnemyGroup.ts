@@ -33,13 +33,13 @@ export default class EnemyGroup extends Phaser.GameObjects.Group {
     if (!enemy) {
       enemy = this.Make()
       enemy.Init()
-      this.scene.children.add(enemy)
-      enemy.OnRecycle()
-      this.add(enemy, true)
-      this.spawned.push(enemy)
-      Game.Core.Enemies.push(enemy)
-      Game.Core.EnemyGroup.add(enemy, false)
     }
+    this.scene.children.add(enemy)
+    enemy.OnRecycle()
+    this.add(enemy, true)
+    this.spawned.push(enemy)
+    Game.Core.Enemies.push(enemy)
+    Game.Core.EnemyGroup.add(enemy, false)
     return enemy
   }
   Recycle(enemy: Enemy) {

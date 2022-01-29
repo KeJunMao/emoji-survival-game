@@ -107,7 +107,6 @@ const STAGES: {
       minimum: 40,
       frequency: 250,
       enemies: [EnemyType.POO, EnemyType.BAT],
-      destructibleType: DestructibleType.BOX,
       events: [
         {
           eventType: StageEventType.GHOST_SWARM,
@@ -200,7 +199,7 @@ const STAGES: {
     },
     {
       minute: 11,
-      minimum: 300,
+      minimum: 200,
       frequency: 100,
       enemies: [EnemyType.BAT],
       events: [
@@ -208,7 +207,7 @@ const STAGES: {
           eventType: StageEventType.BAT_SWARM,
           delay: 5000,
           repeat: 1,
-          chance: 10
+          chance: 80
         }
       ]
     },
@@ -256,6 +255,7 @@ const STAGES: {
       bosses: [EnemyType.HORN]
     },
     {
+      destructibleType: DestructibleType.GIFT,
       minute: 15,
       minimum: 100,
       frequency: 100,

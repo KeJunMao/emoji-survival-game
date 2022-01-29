@@ -26,10 +26,10 @@ export default class DestructibleGroup extends Phaser.GameObjects.Group {
     if (!item) {
       item = this.Make(type)
       item.Init()
-      this.add(item, true)
-      this.spawned.push(item)
-      Game.Core.Destructibles.push(item)
     }
+    this.add(item, true)
+    this.spawned.push(item)
+    Game.Core.Destructibles.push(item)
     return item
   }
   Return(item: Destructible) {

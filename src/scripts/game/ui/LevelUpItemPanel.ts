@@ -107,6 +107,9 @@ export default class LevelUpItemPanel extends Phaser.GameObjects.Container {
         case 'luck':
           temp += '幸运值提升' + (100 * v).toFixed(0) + '%\n'
           break
+        case 'penetrating':
+          temp += `${isPowerUp ? '[全部]' : ''}穿透提升${v.toFixed(0)}\n`
+          break
       }
     }
     return temp
