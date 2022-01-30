@@ -1,6 +1,9 @@
 enum StageEventType {
   GHOST_SWARM = 'GHOST_SWARM',
-  BAT_SWARM = 'BAT_SWARM'
+  BAT_SWARM = 'BAT_SWARM',
+  FAIRY_NPC = 'FAIRY_NPC',
+  VAMPRIE_NPC = 'VAMPRIE_NPC',
+  BUSINESSMAN_NPC = 'BUSINESSMAN_NPC'
 }
 
 export default StageEventType

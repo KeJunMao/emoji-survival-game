@@ -1,5 +1,6 @@
 import { StageEvent } from '../consts/STAGES'
 import EnemyType from '../enums/EnemyType'
+import NPCType from '../enums/NPCType'
 import StageEventType from '../enums/StageEventType'
 import Enemy from './enemy/Enemy'
 import EnemyGroup from './enemy/EnemyGroup'
@@ -41,6 +42,12 @@ export default class StageEventManager {
           this.PlayGhostSwarm(duration)
         case StageEventType.BAT_SWARM:
           this.PlayBatSwarm(duration)
+        case StageEventType.FAIRY_NPC:
+          this.PlayNPC(duration, NPCType.FAIRY)
+        case StageEventType.VAMPRIE_NPC:
+          this.PlayNPC(duration, NPCType.VAMPRIE)
+        case StageEventType.BUSINESSMAN_NPC:
+          this.PlayNPC(duration, NPCType.BUSINESSMAN)
       }
     }
   }
@@ -97,6 +104,16 @@ export default class StageEventManager {
         enemys.forEach(e => {
           e.isDead || e.Disappear()
         })
+      }
+    })
+  }
+  PlayNPC(duration: number = 10000, type: NPCType) {
+    const npc = Game.Core.MakeNPC(type)
+    Game.Core.scene.time.addEvent({
+      delay: duration,
+      loop: false,
+      callback: () => {
+        npc.Leave()
       }
     })
   }

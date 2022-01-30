@@ -58,7 +58,7 @@ export default class LegBullet extends BaseBullet {
     const t = Game.Core.Player.flipX ? this.indexInWeapon % 2 !== 1 : this.indexInWeapon % 2 === 1
     this.x += t ? -64 : 64
     // this.y += 50
-    // this.y -= 16 * this.indexInWeapon
+    this.y -= 16 * this.indexInWeapon
     // this.setOrigin(0, 0)
     this.setFlipY(this.indexInWeapon % 2 == 1)
     this.setFlipX(t)

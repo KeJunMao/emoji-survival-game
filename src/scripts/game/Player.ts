@@ -32,6 +32,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private _invul: boolean
   WorldBoxCollider: Phaser.Geom.Rectangle
   private _blinkTimeout: Phaser.Time.TimerEvent
+  evilValue: number
   public get IsInvul(): boolean {
     return this._invul
   }
@@ -79,6 +80,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this._invul = false
     this.receivingDamage = false
     this.characterType = character
+    this.evilValue = 0
 
     this.scene.add.existing(this)
     this.scene.physics.add.existing(this)

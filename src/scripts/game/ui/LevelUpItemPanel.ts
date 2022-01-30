@@ -2,62 +2,59 @@ import PICKUPS from '../../consts/PICKUPS'
 import WEAPONS from '../../consts/WEAPONS'
 import PickupType from '../../enums/PickupType'
 import WeaponType from '../../enums/WeaponType'
+import { Sizer } from 'phaser3-rex-plugins/templates/ui/ui-components'
+import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js'
 
-export default class LevelUpItemPanel extends Phaser.GameObjects.Container {
-  Icon: Phaser.GameObjects.Image
-  Name: Phaser.GameObjects.Text
-  Description: Phaser.GameObjects.Text
+export default class LevelUpItemPanel extends Sizer {
   weaponType: WeaponType | PickupType
-  Background: Phaser.GameObjects.Graphics
-  IconBG: any
-  NextLevel: Phaser.GameObjects.Text
-  constructor(scene: Phaser.Scene, x: number, y: number, width: number, height: number) {
-    super(scene, x, y)
-    this.setInteractive(new Phaser.Geom.Rectangle(0, 0, width, height), Phaser.Geom.Rectangle.Contains)
-    this.Background = new Phaser.GameObjects.Graphics(scene).setScrollFactor(0)
-    this.Background.fillStyle(0xeeeeee, 0.8)
-    this.Background.fillRect(0, 0, width, height)
-    this.IconBG = new Phaser.GameObjects.Graphics(scene).setScrollFactor(0)
-    this.IconBG.fillStyle(0xffffff, 0.8)
-    this.IconBG.fillRect(10, 10, 48, 48)
-    this.Icon = new Phaser.GameObjects.Image(scene, 0, 0, 'main', '')
-    this.Icon.setOrigin(0).setPosition(18, 18)
-    this.Icon.setDisplaySize(32, 32)
-
-    this.Name = new Phaser.GameObjects.Text(scene, 0, 0, 'Name', {
-      fontSize: '32px',
-      color: '#000000'
+  rexUI: RexUIPlugin
+  Icon: any
+  Name: any
+  Description: any
+  NextLevel: any
+  constructor(scene: Phaser.Scene, width: number) {
+    super(scene, {
+      width: width - 20,
+      orientation: 1,
+      space: { left: 10, right: 10, top: 10, bottom: 10, item: 10 }
     })
-      .setOrigin(0)
-      .setPosition(74, 17)
-    this.NextLevel = new Phaser.GameObjects.Text(scene, 0, 0, '新', {
-      fontSize: '24px',
-      color: '#000000'
+    this.rexUI = scene.rexUI
+    this.addBackground(this.rexUI.add.roundRectangle(0, 0, 0, 0, 5, 0x4e342e))
+    /// @ts-ignore
+    const iconAndNameSizer = this.rexUI.add
+      .sizer({ width: width - 20, space: { item: 5 } })
+      .add(this.scene.add.image(0, 0, 'main', 'leg_bullet.png').setDisplaySize(32, 32), { key: 'Icon' })
+      .add(this.scene.add.text(0, 0, 'Name', { fontSize: '20px', color: '#ffffff' }), { key: 'Name' })
+      .addSpace()
+      .add(this.scene.add.text(0, 0, 'New', { fontSize: '12px', color: '#ffffff' }), {
+        align: 'right-top',
+        key: 'NextLevel'
+      })
+    this.add(iconAndNameSizer)
+    /// @ts-ignore
+    this.add(this.scene.add.text(0, 0, 'Description', { fontSize: '16px', color: '#ffffff' }), {
+      align: 'left',
+      key: 'Description'
     })
-      .setOrigin(0)
-      .setPosition(0.7 * width, 21)
-    this.Description = new Phaser.GameObjects.Text(scene, 10, 74, 'Description', {
-      fontSize: '24px',
-      color: '#000000'
-    })
-    this.Description.setWordWrapWidth(0.9 * width)
-    this.add([this.Background, this.IconBG, this.Icon, this.Name, this.NextLevel, this.Description])
+    this.Icon = iconAndNameSizer.getElement('Icon')
+    this.Name = iconAndNameSizer.getElement('Name')
+    this.NextLevel = iconAndNameSizer.getElement('NextLevel')
+    this.Description = this.getElement('Description')
   }
   AssignData(weaponType: WeaponType, level: number = 0) {
     this.weaponType = weaponType
     const weaponData = WEAPONS[weaponType][0]
     this.Name.setText(weaponData.name)
     this.Icon.setFrame(weaponData.frameName)
-    this.Icon.setOrigin(0).setPosition(18, 18)
     this.Icon.setDisplaySize(32, 32)
     if (level > 0) {
       const nextLevelData = WEAPONS[weaponType][level]
-      this.NextLevel.setText(`等级: ${level + 1}`)
-      this.NextLevel.clearTint()
+      this.NextLevel.setText(`lV ${level + 1}`)
+      this.NextLevel.setColor('white')
       this.Description.setText(LevelUpItemPanel.ParseLevelUpInfo(nextLevelData, weaponData.isPowerUp))
     } else {
-      this.NextLevel.setText('新!')
-      this.NextLevel.setTint(0xecec19)
+      this.NextLevel.setText('New')
+      this.NextLevel.setColor('yellow')
       this.Description.setText(weaponData.description)
     }
   }
@@ -114,18 +111,16 @@ export default class LevelUpItemPanel extends Phaser.GameObjects.Container {
           break
       }
     }
-    return temp
+    return temp.replace(/\n$/, '')
   }
 
   AssignItemData(pickupType: PickupType) {
     this.weaponType = pickupType
     const itemData = PICKUPS[pickupType]
     this.Name.setText(itemData.name)
-    this.NextLevel.setText('')
-    this.NextLevel.clearTint()
     this.Description.setText(itemData.description)
+    this.NextLevel.setText('')
     this.Icon.setFrame(itemData.framName)
-    this.Icon.setOrigin(0).setPosition(18, 18)
     this.Icon.setDisplaySize(32, 32)
   }
 }

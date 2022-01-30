@@ -3,6 +3,7 @@ import Characters from '../enums/CharacterType'
 import DestructibleType from '../enums/DestructibleType'
 import FixedTreasures from '../enums/FixedTreasures'
 import HitVFXType from '../enums/HitVFXType'
+import NPCType from '../enums/NPCType'
 import PickupType from '../enums/PickupType'
 import Scenes from '../enums/Scenes'
 import Treasures from '../enums/TreasureType'
@@ -16,6 +17,8 @@ import Game from './Game'
 import LevelUpFactory from './LevelUpFactory'
 import LootManager from './LootManager'
 import Magnet from './Magnet'
+import BaseNPC from './npc/BaseNPC'
+import NPCGroup from './npc/NPCGroup'
 import BasePickup from './pickup/BasePickup'
 import GemPickup from './pickup/GemPickup'
 import PickupGroup from './pickup/PickupGroup'
@@ -71,6 +74,7 @@ export default class GameCore {
   PlayerUI: PlayerUI
   LevelUpScene: Phaser.Scene
   destructiblesPool: DestructibleGroup
+  npcPool: NPCGroup
   public static get PlayerPxSpeed() {
     return GameCore._basePlayerPxSpeed
   }
@@ -159,6 +163,7 @@ export default class GameCore {
     this.EnemyGroup.clear()
     this.PickupGroup.clear()
     this.BulletGroup.clear()
+    this.destructiblesPool.clear()
   }
 
   InitGame(scene: Phaser.Scene, character: Characters) {
@@ -166,6 +171,10 @@ export default class GameCore {
     this.EnemyGroup = this.scene.add.group()
     this.BulletGroup = this.scene.add.group()
     this.PickupGroup = this.scene.add.group()
+    this.pickupPool = new PickupGroup(this.scene)
+    this.gemsPool = new PickupGroup(this.scene)
+    this.destructiblesPool = new DestructibleGroup(this.scene)
+    this.npcPool = new NPCGroup(this.scene)
 
     this.EnemyGroup['physicsType'] = Phaser.Physics.Arcade.DYNAMIC_BODY
     this.CleanUp()
@@ -174,11 +183,10 @@ export default class GameCore {
     this.scene.physics.add.collider(this.EnemyGroup, this.EnemyGroup)
     this.scene.physics.add.overlap(this.Player, this.PickupGroup, this.onPlayerOverlapsPickup.bind(this))
     this.scene.physics.add.overlap(this.Magnet, this.PickupGroup, this.onMagnetOverlapsPickup.bind(this))
-    this.pickupPool = new PickupGroup(this.scene)
-    this.gemsPool = new PickupGroup(this.scene)
+    this.scene.physics.add.collider(this.Player, this.npcPool, this.onPlayerOverlapsNPC.bind(this))
     // this.hitVFXPool = new At(e),
     // this.damageNumberPool = new kt(e),
-    this.destructiblesPool = new DestructibleGroup(this.scene)
+
     this.tickerEvent = this.scene.time.addEvent({
       delay: 1000,
       callback: this.OnTickerEvent,
@@ -200,9 +208,14 @@ export default class GameCore {
     this.BGMan.MakeBackground()
     this.containmentRect_Screen = new ContainmentRect(0.6)
     this.containmentRect_ScreenPlus = new ContainmentRect(0.8)
-    this.MainUI.UpdatePlayerLevel()
+    this.PlayerUI.UpdatePlayerLevel()
     this.PlayerUI.Update()
     this.LevelUpScene = this.scene.scene.get(Scenes.UI_levelUpScene)
+    // test code
+    // this.MakeNPC(NPCType.FAIRY)
+    // this.MakeNPC(NPCType.VAMPRIE)
+    // this.MakeNPC(NPCType.BUSINESSMAN)
+    // end test code
   }
 
   FreezeSnapshot(callback: () => void) {
@@ -248,6 +261,18 @@ export default class GameCore {
     }
   }
 
+  MakeNPC(type: NPCType) {
+    const vector = this.GetPositionOutOfSight(45)
+    const npc = this.npcPool.SpawnAt(vector.x, vector.y, type)
+    while (this.npcPool.spawned.length > 1) {
+      const furthest = this.furthest(this.Player, this.npcPool.spawned)
+      if (furthest) {
+        furthest.DeSpawn()
+      }
+    }
+    return npc
+  }
+
   TurnOnVacuum() {
     const gems = this.gemsPool.spawned[PickupType.GEM]
     gems.forEach(v => (v.goToPlayer = true))
@@ -272,6 +297,12 @@ export default class GameCore {
     const pickup = object2 as BasePickup
     this.GetPickup(pickup)
     pickup.GetTaken()
+  }
+  onPlayerOverlapsNPC(object1: Phaser.GameObjects.GameObject, object2: Phaser.GameObjects.GameObject) {
+    const npc = object2 as BaseNPC
+    if (!npc.isLeave) {
+      npc.OnPlayerOverlaps()
+    }
   }
   GetPickup(pickup: BasePickup) {
     // throw new Error('Method not implemented.')
@@ -380,7 +411,7 @@ export default class GameCore {
   }
   GameOver() {
     // throw new Error('Method not implemented.')
-    alert('Game Over')
+    // alert('Game Over')
     this.SceneManager.TestGameOver()
   }
 
@@ -398,7 +429,7 @@ export default class GameCore {
       this.LootManager.RecalculateLoot()
       this.LevelUpFactory.CalculateXPfactor()
       this.PlayerUI.Update()
-      this.MainUI.UpdatePlayerLevel()
+      this.PlayerUI.UpdatePlayerLevel()
     }
   }
   SwapToLevelUpScene() {
@@ -417,7 +448,14 @@ export default class GameCore {
     if (!WEAPONS[weaponType]) return
     const weapon = this.Weapons.find(t => t.bulletType === weaponType)
     if (weapon) {
-      weapon.LevelUp()
+      if (!weapon.LevelUp()) {
+        Game.Core.PlayerOptions.AddCoins(10)
+        this.MainUI.UpdateCoins()
+        if (isLeveUp) {
+          this.LevelUpFactory.RemoveFromStore(weapon.bulletType)
+        }
+      }
+      this.MainUI.AddWeaponIcon(weaponType)
     } else {
       this.AddWeapon(weaponType, isLeveUp)
       this.SetSeenWeapon(weaponType)

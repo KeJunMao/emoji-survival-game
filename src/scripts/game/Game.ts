@@ -9,6 +9,7 @@ export default class Game extends Phaser.Game {
     return this._core
   }
   static set Core(core: GameCore) {
+    window['game'] = core
     this._core = core
   }
 

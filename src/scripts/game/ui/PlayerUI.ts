@@ -1,43 +1,66 @@
+import { NumberBar } from 'phaser3-rex-plugins/templates/ui/ui-components'
 import Game from '../Game'
-
+import CHARACTERS from '../../consts/CHARACTERS'
+import GameCore from '../GameCore'
+window['Percent'] = Phaser.Math.Percent
 export default class PlayerUI {
-  hpBarOffset: Phaser.Math.Vector2
+  scene: Phaser.Scene
+  xpBar: NumberBar
+  hpBarOffset: any
   hpBarHeight: number
   hpBarWidth: number
-  scene: Phaser.Scene
-  hpBar: Phaser.GameObjects.Graphics
-  xpBarHeight: number
-  xpBarWidth: number
-  xpBar: Phaser.GameObjects.Graphics
+  hpBar: any
   constructor(scene: Phaser.Scene) {
+    this.scene = scene
     this.hpBarOffset = new Phaser.Math.Vector2(-25, 40)
     this.hpBarHeight = 4
     this.hpBarWidth = 50
-    this.xpBarHeight = 10
-    this.xpBarWidth = scene.renderer.width - 50
-    this.scene = scene
     this.hpBar = scene.add.graphics().setScrollFactor(0)
-    this.xpBar = scene.add.graphics().setScrollFactor(0)
     this.Init()
+  }
+  Init() {
+    const character = CHARACTERS[Game.Core.PlayerOptions.SelectedCharacter][0]
+    this.xpBar = this.scene.rexUI.add
+      .numberBar({
+        anchor: {
+          top: 'top',
+          left: 'left+2',
+          right: 'right+2'
+        },
+        background: this.scene.rexUI.add.roundRectangle(0, 0, 0, 0, 10, 0x4e342e),
+        icon: this.scene.rexUI.add.circleMaskImage(0, 0, 'main', character.spriteName).setDisplaySize(15, 15),
+        width: this.scene.renderer.width - 4,
+        slider: {
+          track: this.scene.rexUI.add.roundRectangle(0, 0, 0, 0, 5, 0xd0ada7),
+          indicator: this.scene.rexUI.add.roundRectangle(0, 0, 0, 0, 5, 0xd7634f),
+          easeValue: { duration: 250 }
+        },
+        text: this.scene.add.text(0, 0, '等级1').setFixedSize(50, 0),
+        space: {
+          left: 5,
+          right: 5,
+          top: 2,
+          bottom: 2,
+
+          icon: 10,
+          slider: 10
+        }
+      })
+      .setScrollFactor(0)
+      .setDepth(GameCore.ZInGameUI)
+      .layout()
   }
   Update() {
     this.UpdateXpBar()
     this.UpdateHpBar()
   }
 
-  Init() {}
+  UpdatePlayerLevel() {
+    this.xpBar.setText(`等级 ${Game.Core.Player.level}`)
+  }
 
   UpdateXpBar() {
-    this.xpBar.clear()
-    const value =
-      (Game.Core.Player.xp - Game.Core.LevelUpFactory.PreviousXpRequiredToLevelUp) /
-      (Game.Core.LevelUpFactory.XpRequiredToLevelUp - Game.Core.LevelUpFactory.PreviousXpRequiredToLevelUp)
-    // xpBar BG
-    this.xpBar.fillStyle(0x000000, 1)
-    this.xpBar.fillRect(4, 4, this.xpBarWidth, this.xpBarHeight)
-    // value
-    this.xpBar.fillStyle(0xea5a47, 1)
-    this.xpBar.fillRect(4, 4, value * this.xpBarWidth, this.xpBarHeight)
+    this.xpBar.easeValueTo(Game.Core.Player.xp, 0, Game.Core.LevelUpFactory.XpRequiredToLevelUp)
   }
 
   UpdateHpBar() {

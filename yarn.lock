@@ -3766,7 +3766,7 @@ path@^0.12.7:
 
 phaser3-rex-plugins@^1.1.66:
   version "1.1.66"
-  resolved "https://registry.npmmirror.com/phaser3-rex-plugins/download/phaser3-rex-plugins-1.1.66.tgz#466b467723b78ade8fc33f05599dff013e74bcc5"
+  resolved "https://registry.npmmirror.com/phaser3-rex-plugins/-/phaser3-rex-plugins-1.1.66.tgz#466b467723b78ade8fc33f05599dff013e74bcc5"
   integrity sha512-HP90KmNOOysfFxFsiJfajsa/DX8jIh8Uks2mcmfOu+aiZ/38CJbEcLHdnB/PlztNn+XMd/DQfauLJ/EwWAujtA==
   dependencies:
     eventemitter3 "^3.1.2"
@@ -3774,11 +3774,6 @@ phaser3-rex-plugins@^1.1.66:
     js-yaml "^4.1.0"
     papaparse "^5.3.1"
     webfontloader "^1.6.28"
-
-phaser3-weapon-plugin@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.npmmirror.com/phaser3-weapon-plugin/download/phaser3-weapon-plugin-2.2.0.tgz#1cd2f53242bb0c1d4a129b6d4562bddf263f1267"
-  integrity sha1-HNL1MkK7DB1KEpttRWK93yY/Emc=
 
 phaser@^3.55.2:
   version "3.55.2"

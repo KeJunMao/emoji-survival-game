@@ -1,10 +1,12 @@
-import 'phaser'
+/// <reference path="../../typings/custom.d.ts" />
 
+import 'phaser'
 import Game from './game/Game'
 import LevelUpScene from './game/ui/LevelUpScene'
 // import FirstGameScene from './scenes/firstGameScene'
 import MainScene from './scenes/mainScene'
 import PreloadScene from './scenes/preloadScene'
+import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js'
 
 export const DEFAULT_SCALE = 0.5
 export const DEFAULT_WIDTH = 1024 * DEFAULT_SCALE
@@ -61,9 +63,18 @@ const config = {
       debug: false,
       gravity: { y: 0 }
     }
+  },
+  plugins: {
+    scene: [
+      {
+        key: 'rexUI',
+        plugin: UIPlugin,
+        mapping: 'rexUI'
+      }
+    ]
   }
 }
 
 window.addEventListener('load', () => {
-  window['game'] = new Game(config)
+  const game = new Game(config)
 })
