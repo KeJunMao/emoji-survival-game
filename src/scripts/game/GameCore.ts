@@ -11,6 +11,7 @@ import WeaponType from '../enums/WeaponType'
 import Weapons from '../enums/WeaponType'
 import BGMan from './BGMan'
 import ContainmentRect from './ContainmentRect'
+import DamageNumberGroup from './damage/DamageNumberGroup'
 import DestructibleGroup from './destructible/DestructibleGroup'
 import Enemy from './enemy/Enemy'
 import Game from './Game'
@@ -75,6 +76,7 @@ export default class GameCore {
   LevelUpScene: Phaser.Scene
   destructiblesPool: DestructibleGroup
   npcPool: NPCGroup
+  damageNumberPool: DamageNumberGroup
   public static get PlayerPxSpeed() {
     return GameCore._basePlayerPxSpeed
   }
@@ -185,7 +187,7 @@ export default class GameCore {
     this.scene.physics.add.overlap(this.Magnet, this.PickupGroup, this.onMagnetOverlapsPickup.bind(this))
     this.scene.physics.add.collider(this.Player, this.npcPool, this.onPlayerOverlapsNPC.bind(this))
     // this.hitVFXPool = new At(e),
-    // this.damageNumberPool = new kt(e),
+    this.damageNumberPool = new DamageNumberGroup(this.scene)
 
     this.tickerEvent = this.scene.time.addEvent({
       delay: 1000,
@@ -212,9 +214,9 @@ export default class GameCore {
     this.PlayerUI.Update()
     this.LevelUpScene = this.scene.scene.get(Scenes.UI_levelUpScene)
     // test code
-    // this.MakeNPC(NPCType.FAIRY)
-    // this.MakeNPC(NPCType.VAMPRIE)
-    // this.MakeNPC(NPCType.BUSINESSMAN)
+    this.MakeNPC(NPCType.FAIRY)
+    this.MakeNPC(NPCType.VAMPRIE)
+    this.MakeNPC(NPCType.BUSINESSMAN)
     // end test code
   }
 
@@ -406,8 +408,7 @@ export default class GameCore {
     // console.log('ShowHitVFXAt')
   }
   ShowDamageAt(x: number, y: number, PPower: number) {
-    // throw new Error('Method not implemented.')
-    // console.log('ShowDamageAt')
+    this.damageNumberPool.SpawnAt(x, y, PPower)
   }
   GameOver() {
     // throw new Error('Method not implemented.')

@@ -162,6 +162,7 @@ export default class MainUi {
                 backgroundColor: '#333'
               })
             })
+            .setDepth(GameCore.ZInGameUI - 1)
             .layout(),
           {
             column: index,

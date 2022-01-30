@@ -60,7 +60,11 @@ export default class PlayerUI {
   }
 
   UpdateXpBar() {
-    this.xpBar.easeValueTo(Game.Core.Player.xp, 0, Game.Core.LevelUpFactory.XpRequiredToLevelUp)
+    this.xpBar.easeValueTo(
+      Game.Core.Player.xp,
+      Game.Core.LevelUpFactory.PreviousXpRequiredToLevelUp,
+      Game.Core.LevelUpFactory.XpRequiredToLevelUp
+    )
   }
 
   UpdateHpBar() {
